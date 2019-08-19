@@ -17,7 +17,7 @@
         <email>arusso@amsl.com</email>
       </address>
     </author>
-    <date month="March" year="2019"/>
+    <date/>
     <abstract>
       <t>
 	This is a list of frequently asked questions regarding xml2rfc. Please
@@ -218,14 +218,16 @@ Note: As long as they match, the name you use in the ENTITY definition and the &
      use an include in the references section
 </t>
             <artwork name="" type="" align="left" alt=""><![CDATA[
-<?rfc include="reference.RFC.2119.xml"?>
+<xi:include
+    href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
 ]]></artwork>
             <t>
 
 For an Internet-Draft, the citation file uses the draft string. For example:
 </t>
             <artwork name="" type="" align="left" alt=""><![CDATA[
-<?rfc include="reference.I-D.ietf-wgname-topic.xml"?>
+<xi:include
+    href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-wgname-topic.xml"/>
 ]]></artwork>
           </li>
         </ol>
@@ -1091,10 +1093,8 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
 <figure>
   <name>TCP Header Format</name>
   <artset>
-    <artwork alt="TCP Header" type="svg">
-      <xi:include
-	  href="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg"/>
-    </artwork>
+    <artwork alt="TCP Header" type="svg"
+     src="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg"/>
     <artwork alt="TCP Header from RFC 793" type="ascii-art">
        [... ASCII ART ...]
     </artwork>
@@ -1107,9 +1107,7 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
 <figure>
   <name>TCP Header Format</name>
   <artset>
-    <artwork alt="external file" type="svg">
-      <xi:include
-	  href="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg"/>
+    <artwork alt="external file" type="svg" src="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg">
     </artwork>
     <artwork alt="TCP Header from RFC 793" type="ascii-art">
       <![CDATA[
