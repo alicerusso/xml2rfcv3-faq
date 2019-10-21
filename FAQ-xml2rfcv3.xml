@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     submissionType="IETF" category="info" xml:lang="en" version="3" 
+     docName="FAQ-xml2rfcv3-03" submissionType="IETF" category="info" xml:lang="en" version="3" 
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intend for the HTML output to be read, not the text output -->
@@ -20,16 +20,25 @@
     <date/>
     <abstract>
       <t>
-	This is a list of frequently asked questions regarding xml2rfc. Please
-	send questions or corrections to the <eref
-	target="https://www.ietf.org/mailman/listinfo/xml2rfc">xml2rfc mailing
-      list</eref>.</t> 
+	This is a list of frequently asked questions regarding xml2rfc, a tool
+	that can be used to create Internet-Drafts or RFCs.</t>
 
-      <t><strong>Note: this FAQ is for version 3 of xml2rfc; the vocabulary has been changed
-      significantly from version 2.</strong>
-      For guidance on version 2, please see the <eref target="https://xml2rfc.tools.ietf.org/xml2rfcFAQ.html">FAQ for xml2rfc v2</eref>. 
+      <t><strong>This FAQ is for version 3 of xml2rfc; the vocabulary has been
+      changed significantly from version 2.</strong> For guidance on version
+      2, please see the <eref
+      target="https://xml2rfc.tools.ietf.org/xml2rfcFAQ.html">FAQ for xml2rfc
+      v2</eref>.
       </t>
     </abstract>
+    <note>
+      <name>Note to Readers</name>
+      <t>
+        Please send suggestions or corrections to the <eref
+        target="https://www.ietf.org/mailman/listinfo/xml2rfc">xml2rfc mailing
+        list</eref>. Source code for this document can be found at <eref
+        target="https://github.com/arusso-rpc/xml2rfcv3-faq"/>.
+      </t>
+    </note>
   </front>
   <middle>
     <!-- THE BASICS -->
@@ -42,7 +51,7 @@ xml2rfc is a tool that lets you convert an XML source file into a text, HTML,
 PDF, expanded XML file, or various other options.  It is available from <xref target="xml2rfc" format="default">https://xml2rfc.tools.ietf.org</xref> as
 a web-based service or for download. Version 3 of the tool adds new
 features and will be used by the RFC Editor to create RFCs. The
-current version is here:
+current version is here: <eref target="https://pypi.org/project/xml2rfc/"/>.
 </t>
       </section>
       <section numbered="true" toc="default">
@@ -61,7 +70,7 @@ extraction.  Also, the RFC Editor will make use of your source file.
         <t>
 You need the essentials. XML uses start and end tags, which are 
 nested and matching, and they are case-sensitive. See
-the section "XML basics" of <xref target="howto" format="title"/> for
+"XML basics" in <xref target="howto" format="title"/> for
 more details.
 </t>
       </section>
@@ -71,7 +80,9 @@ more details.
           <li>Web service to convert a file: <eref target="https://xml2rfc.tools.ietf.org/experimental.html"/></li>
 	  <li>Introduction to xml2rfc v3 <eref target="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html"/></li>
           <li>
-	    The v3 vocabulary: <xref target="RFC7991"/>
+	    The v3 vocabulary: <xref target="RFC7991"/> and <xref
+	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/> describe
+	    the v3 XML schema
           </li>
           <li>
 	    xml2rfc mailing list: <eref target="https://www.ietf.org/mailman/listinfo/xml2rfc"/>
@@ -118,15 +129,16 @@ available, they will be posted in the same directory.
         <name>Can I do it without a template?</name>
 
         <t>
-Sure. We recommend copying the front matter from a template or the XML source of an existing document, then
-going from there. Put &lt;t&gt; tags around paragraphs, and
-&lt;figure&gt;&lt;artwork&gt; tags around figures. Use &lt;![CDATA[ ... ]]&gt;
-within sourcecode elements or artwork that contain the less than character (&lt;). (See <xref target="q_CDATA" format="title"/> for more information.)
+Yes. We recommend converting a v2 XML to v3 XML using id2xml (see <xref
+target="q_id2xml"/>), and going from there. Put &lt;t&gt; tags around
+paragraphs, and &lt;figure&gt;&lt;artwork&gt; tags around figures. Use
+&lt;![CDATA[ ... ]]&gt; within sourcecode elements or artwork that contain the
+less than character (&lt;). (See <xref target="q_CDATA" format="title"/> for
+more information.)
 </t>
         <t>
-To get a citation like "[RFC2119]", use <tt>&lt;xref target="RFC2119"/&gt;</tt>.
-To get a cross-reference to another section like "see Section 3", use
-<tt>&lt;xref target="s_using_refs"/&gt;</tt> (assuming Section 3 has anchor="s_using_refs").  See <xref target="s_using_refs" format="title"/> for more information.
+To get a citation like "[RFC2119]", use <tt>&lt;xref
+target="RFC2119"/&gt;</tt>. See <xref target="s_using_refs" format="title"/> for more information.
 </t>
       </section>
       <section numbered="true" toc="default">
@@ -188,10 +200,10 @@ For example, putting it together:
         <name>How do I put in a reference?</name>
 
         <t>
-A set of online citation libraries are maintained on <xref target="xml2rfc" format="default">xml2rfc.tools.ietf.org</xref>.
-They include citations for RFCs, Internet-Drafts, and documents
-produced by the W3C and 3GPP, among
-others. 
+A set of online citation libraries are maintained on <xref target="xml2rfc"
+format="default">xml2rfc.tools.ietf.org</xref>.  They include citations for
+RFCs, Internet-Drafts, and documents produced by the W3C and 3GPP, among
+others.
 </t>
         <t>
 To make use of the citation libraries, there are 2 methods:
@@ -202,33 +214,36 @@ To make use of the citation libraries, there are 2 methods:
             <t>
      define an ENTITY at the top:
 </t>
-            <artwork name="" type="" align="left" alt=""><![CDATA[
-<!ENTITY RFC2119 SYSTEM "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-]]></artwork>
+            <sourcecode type="xml"><![CDATA[
+<!ENTITY RFC2119 SYSTEM 
+   "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
+]]></sourcecode>
             <t>
 
 and use &amp;RFC2119; in the references section
 </t>
           </li>
           <li>
-Note: As long as they match, the name you use in the ENTITY definition and the &amp;name; in the references section are your choice, and may be uppercase or lowercase (i.e., rfc2119 or RFC2119 or keywords). We suggest choosing uppercase (i.e., to match the anchor of the reference) in order to make it easier to be consistent.
+Note: As long as they match, the name you use in the ENTITY definition and the
+&amp;name; in the references section are your choice, and may be uppercase or
+lowercase (i.e., rfc2119 or RFC2119 or keywords). 
 </li>
           <li>
             <t>
      use an include in the references section
 </t>
-            <artwork name="" type="" align="left" alt=""><![CDATA[
+            <sourcecode type="xml"><![CDATA[
 <xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/>
-]]></artwork>
+]]></sourcecode>
             <t>
 
 For an Internet-Draft, the citation file uses the draft string. For example:
 </t>
-            <artwork name="" type="" align="left" alt=""><![CDATA[
+            <sourcecode type="xml"><![CDATA[
 <xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-wgname-topic.xml"/>
-]]></artwork>
+]]></sourcecode>
           </li>
         </ol>
         <t>Preferably, use the citation libraries when possible. However,
@@ -237,7 +252,7 @@ another option is to include the complete reference element (see
 reference element:
 
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
+        <sourcecode type="xml"><![CDATA[
     <reference anchor="" target="">
         <front>
             <title></title>
@@ -248,11 +263,14 @@ reference element:
         </front>
         <seriesInfo name="" value="" />
     </reference>
-]]></artwork>
+]]></sourcecode>
+
         <t>
-All are cited textually in the same manner -- by using xref elements
-where the target corresponds to the anchor of the reference element,
-e.g., &lt;xref target="RFC2119" /&gt;. The anchors for RFCs are "RFCNNNN" (4 digits, using leading zeros) and the anchors for Internet-Drafts are "I-D.&lt;name without "draft-ietf-" or the version number&gt;".
+All are cited textually in the same manner -- by using xref elements where the
+target corresponds to the anchor of the reference element, e.g., &lt;xref
+target="RFC2119" /&gt;. The anchors for RFCs are "RFCNNNN" (4 digits, using
+leading zeros) and the anchors for Internet-Drafts are "I-D.&lt;name without
+"draft-ietf-" or the version number&gt;".
 </t>
       </section>
       <section anchor="q_full_ref" numbered="true" toc="default">
@@ -284,25 +302,21 @@ In the <tt>rfc</tt> element, set the attribute <tt>symRefs="no"</tt> for
 symbolic references. This makes reference tags be numeric, e.g., [1], instead
 of symbolic, e.g., [RFC2119].
 </t>
-<!--        <t>
-symrefs="yes" is the default, starting with v1.33 of xml2rfc.
-</t>
--->
+
       </section>
       <section numbered="true" toc="default">
         <name>How do I make the reference tag [IKEv2] instead of [RFC4306]?</name>
         <t>
 Use the <tt>displayreference</tt> element and set the <tt>to</tt> attribute to
-the nickname. Tip: place it before the <tt>references</tt> element. For example:
+the nickname. Tip: place it before the first <tt>references</tt> element. For example:
 </t>
-        <artwork type="xml"><![CDATA[
+        <sourcecode type="xml"><![CDATA[
 <displayreference target="RFC7296" to="IKEv2"/>
 <references>
 [...]
 <xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7296.xml"/>
-
-]]></artwork>
+]]></sourcecode>
         <t>
 yields:
 </t>
@@ -327,9 +341,9 @@ In the rfc element, set the attribute <tt>sortRefs="yes"</tt>.  Note that sortRe
 The eref element for an external reference creates a link in the HTML output.  For example:
 
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
+        <sourcecode type="xml"><![CDATA[
 <eref target="https://www.w3.org">
-]]></artwork>
+]]></sourcecode>
         
 <t>
 yields <eref target="https://www.w3.org"/>.</t>
@@ -343,14 +357,14 @@ yields <eref target="https://www.w3.org"/>.</t>
 <t>
 Another option is using xref and creating a reference that uses the target attribute for the URL. For example:
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
+        <sourcecode type="xml"><![CDATA[
     <reference anchor="W3C" target="https://www.w3.org/">
         <front>
             <title>World Wide Web Consortium (W3C)</title>
             <author/>
         </front>
     </reference>
-]]></artwork>
+]]></sourcecode>
 
         <t>
 yields
@@ -365,7 +379,7 @@ yields
         <t>
 Use the name element (child of the references element) as follows:
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
+        <sourcecode type="xml"><![CDATA[
     <back>
       <references>
         <name>Normative References</name>
@@ -376,34 +390,31 @@ Use the name element (child of the references element) as follows:
         ...
       </references>
     </back>
-]]></artwork>
+]]></sourcecode>
       </section>
       <section numbered="true" toc="default">
         <name>How do I make a cross-reference to another section?</name>
 
         <t>
 Make sure the section you want to reference has an anchor attribute.
-
-<!-- Q: automatic anchors w/ section number? -->
-
 For example:
 
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
-  <section title="Security Considerations" anchor="sec_cons">
-]]></artwork>
+        <sourcecode type="xml"><![CDATA[
+   <section anchor="s_using_lists">
+]]></sourcecode>
         <t>
-Then, refer to it with an xref element:
+Then, refer to it with an &lt;xref&gt; element:
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
-  See <xref target="sec_cons" />.
-]]></artwork>
+        <sourcecode type="xml"><![CDATA[
+  See <xref target="s_using_lists" />.
+]]></sourcecode>
         <t>
-which yields the text output: 
+which yields
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
-See Section 9.  
-]]></artwork>
+<blockquote>
+  See <xref target="s_using_lists" />.
+</blockquote>
         <t>
 (where the number of that section is determined dynamically).
 </t>
@@ -463,37 +474,58 @@ Use &lt;xref&gt; and set the sectionFormat attribute to various options.
 
 
       <section numbered="true" toc="default">
-        <name>How do I get 'See Sections 2 and 3' instead of 'See Section 2 and Section 3'?</name>
+        <name>How do I link to multiple sections within a document (e.g., 'see Sections 3 and 4')?</name>
         <t>
-Use the format attribute.  For example, assuming the anchor
-attributes for the relevant sections have the values "sec_cons" and "IANA_cons":
+Use &lt;xref&gt; with the format attribute.  For example, assuming the anchors 
+for the relevant sections match the targets:
 
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
-See Sections <xref target="s_creating" format="counter" /> and
-<xref target="s_using_refs" format="counter" />.
-]]></artwork>
+        <sourcecode type="xml"><![CDATA[
+See Sections <xref target="s_using_refs" format="counter" /> and
+<xref target="s_using_lists" format="counter" />.
+]]></sourcecode>
         <t>
 yields the output:
 </t>
-<blockquote><t>
-See Sections <xref target="s_creating_draft" format="counter" /> and
+<blockquote>
+See Sections <xref target="s_using_refs" format="counter" /> and
 <xref target="s_using_lists" format="counter" />.
-      </t></blockquote>
+</blockquote>
         <t>
 Note: The format attribute can have the value "title", which displays the title of the
 section.  For example,
 
 </t>
-        <artwork name="" type="xml" align="left" alt=""><![CDATA[
-See the <xref target="s_using_lists" format="title" />.
-]]></artwork>
+        <sourcecode type="xml"><![CDATA[
+See Sections <xref target="s_using_refs" format="title" /> and
+<xref target="s_using_lists" format="title" />.
+]]></sourcecode>
         <t>
 yields the output:
 	</t>
+<blockquote>
+See <xref target="s_using_refs" format="title" /> and <xref target="s_using_lists" format="title" />.</blockquote>
+      </section>
+
+      <section numbered="true" toc="default">
+        <name>How do I link to multiple sections in another document
+	(e.g., 'see Sections 5 and 6 in RFC 3550')?</name>
+
+<t>Use &lt;xref&gt; with sectionFormat="bare". For example:</t>
+        <sourcecode type="xml"><![CDATA[
+See Sections <xref target="RFC3550" section="5" sectionFormat="bare" /> and
+<xref target="RFC3550" section="6" sectionFormat="bare" /> in 
+<xref target="RFC3550"/>.
+]]></sourcecode>
+        <t>
+yields the output:
+</t>
 <blockquote><t>
-See <xref target="s_using_lists" format="title" />.
-</t></blockquote>
+See Sections <xref target="RFC3550" section="5" sectionFormat="bare" /> 
+and <xref target="RFC3550" section="6" sectionFormat="bare" /> in 
+<xref target="RFC3550"/>.
+      </t></blockquote>
+
       </section>
     </section>
 
@@ -545,22 +577,6 @@ For full details, see <xref target="RFC7991" sectionFormat="of" section="2.34.5"
   </li>
         </ul>
       </section>
-
-<!--
-      <section numbered="true" toc="default">
-        <name>How do I get blank lines between list items?</name>
-        <t>
-Use the PIs compact="yes" and subcompact="no" at the top.
-This will put one blank line between list items.  (If
-you want to remove blank lines between items in a specific list, then turn
-subcompact on and off around that list.)
-</t>
-        <t>
-Note: the fine-tuning of whitespace has more relevance to the text
-output than the HTML output.
-</t>
-      </section>
--->
 
       <section anchor="q_fancy_lists" numbered="true" toc="default">
         <name>How do I get a list like (1), (2), (3) or (a), (b), (c)?</name>
@@ -707,34 +723,8 @@ have to use &amp;lt;)  So it is especially good for when there are XML
 examples in the document.
 </t>
 
-<!-- this example seems unnecessary 
-        <t>
-For example:
-</t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
-
-<figure><artwork>
-      Here is a figure that mentions XML elements such as <xref>.
-</artwork></figure>
-
-]]></artwork>
--->
-
       </section>
 
-<!--
-      <section numbered="true" toc="default">
-        <name>How do I get an unnumbered figure?</name>
-
-<t>
-<cref source="-AR">not yet updated</cref>
-</t>
-        <t>
-Remove the anchor attribute for that figure. Figure elements without anchor attributes
-will not be automatically numbered (i.e., "Figure 1").
-</t>
-      </section>
--->
       <section numbered="true" toc="default">
         <name>What are the entities used for special characters?</name>
         <t>To prevent these characters from being parsed as XML, use
@@ -753,6 +743,7 @@ In addition, the following entities are defined:
 &quot; for "
 &nbsp; for non-breaking space
 &nbhy; for non-breaking hyphen
+&wj; for word joiner
 ]]></artwork>
       </section>
 
@@ -766,22 +757,6 @@ together on a line.
       </section>
 -->
 
-<!-- AR: seems no longer relevant bc deprecating TEXT output.
-
-      <section numbered="true" toc="default">
-        <name>How do I control vertical whitespace?</name>
-        <t>
-Use the PIs compact and subcompact.
-</t>
-        <t>
-We recommend compact="yes" and subcompact="no". 
-</t>
-        <ul spacing="normal">
-          <li>compact="yes" will not start each main section on a new page.</li>
-          <li>subcompact="no" will put one blank line between list items.</li>
-        </ul>
-      </section>
--->
 
       <section numbered="true" toc="default">
         <name>How do I indicate the editor of the document?</name>
@@ -789,9 +764,9 @@ We recommend compact="yes" and subcompact="no".
 Use the role attribute of the author element. For example:
 
 </t>
-        <artwork name="" type="" align="left" alt=""><![CDATA[
+        <sourcecode type="xml"><![CDATA[
 <author initials="J" surname="Doe" fullname="John Doe" role="editor">
-]]></artwork>
+]]></sourcecode>
       </section>
 
       <section numbered="true" toc="default">
@@ -803,9 +778,9 @@ Use the role attribute of the author element. For example:
 	<t>
 	  Example of using comments:
 	</t>
-            <artwork name="" type="" align="left" alt=""><![CDATA[
+            <sourcecode type="xml"><![CDATA[
 <!-- [JD] This point needs revision.-->
-]]></artwork>
+]]></sourcecode>
 
             <t>
 	      &lt;cref&gt; will show up in
@@ -815,9 +790,9 @@ Use the role attribute of the author element. For example:
 Example of using &lt;cref&gt;:
 
 </t>
-            <artwork name="" type="" align="left" alt=""><![CDATA[
+            <sourcecode type="xml"><![CDATA[
 <cref anchor="Q1" source="JD">This point needs revision.</cref>
-]]></artwork>
+]]></sourcecode>
             <t>
 	      yields
 	    </t>
@@ -847,7 +822,7 @@ target="https://greenbytes.de/tech/webdav/rfc2629xslt/rfc2629xslt.html">"Transfo
 RFC7749-formatted XML through XSLT"</eref> for more information.
 </t>
       </section>
-      <section numbered="true" toc="default">
+      <section numbered="true" toc="default" anchor="q_id2xml">
         <name>Is there a tool that will turn my text file into an XML file (i.e., id2xml)?</name>
         <t>
 Yes, id2xml is available here: <eref
@@ -1103,7 +1078,7 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
     ]]></sourcecode>
 
 
-<t>Which yields:</t>
+<t>which yields:</t>
 <figure>
   <name>TCP Header Format</name>
   <artset>
@@ -1130,10 +1105,8 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                             data                              |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         ]]></artwork>
-
-</artset>
-</figure>
+]]></artwork>
+</artset></figure>
 
       </section>
 
@@ -1158,7 +1131,7 @@ asterisks around the text, and &lt;tt&gt; yields quotation marks.</t></aside>
         <name>How do I get subscript and superscript?</name>
 <t>Use &lt;sub&gt; for subscript, and &lt;sup&gt; for superscript.</t>
 
-<t>Example (from RFC 6330):</t>
+<t>Example (using text from RFC 6330):</t>
 <ul>
 <li>
    x<sub>0</sub> = (y + i) mod 2<sup>8</sup>
@@ -1173,7 +1146,7 @@ asterisks around the text, and &lt;tt&gt; yields quotation marks.</t></aside>
    x<sub>3</sub> = (floor(y / 2<sup>24</sup>) + i) mod 2<sup>8</sup>
 </li>
 </ul>
-<!--
+<!-- Original 
    o  x0 = (y + i) mod 2^^8
 
    o  x1 = (floor(y / 2^^8) + i) mod 2^^8
@@ -1194,18 +1167,16 @@ perl, pseudocode, python, rnc, xml,</tt> and <tt>yang.</tt></t>
       <section anchor="q_bcp14" numbered="true" toc="default">
         <name>Do I have to use the bcp14 element each time a
 	keyword (e.g., "MUST") appears in my document?</name>
-<!-- AR: apparently there's no difference in
-     the display.  is it intentional that there's nothing for this in the CSS? -->
+
 <t>It is not a <bcp14>MUST</bcp14>, but it makes the usage more
 clear.</t>
-<t>SHOULD without the &lt;bcp14&gt; element, <bcp14>SHOULD</bcp14> with it.</t>
       </section>
 
 
       <section anchor="q_printing" numbered="true" toc="default">
-        <name>What is the best way to print a hardcopy?</name>
+        <name>What is the best way to print a hard copy?</name>
 <t>Print the PDF.</t>
-<!-- AR: or should this be HTML bc the CSS does nice printing? -->
+
       </section>
 
       <section anchor="q_rfcfiles" numbered="true" toc="default">
@@ -1242,6 +1213,9 @@ will be available for download from <eref target="https://www.rfc-editor.org/ret
 
 <xi:include
 href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rfc-v3-implementation-notes.xml"/>
+
+<xi:include
+    href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3550.xml"/>
 
 <xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7296.xml"/>
@@ -1284,22 +1258,6 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
         </front>
       </reference>
 
-<!--      <reference anchor="readme" target="https://xml2rfc.ietf.org/authoring/README.html">
-        <front>
-          <title>xml2rfc v1.33</title>
-          <author initials="M" surname="Rose" fullname="">
-            <organization/>
-          </author>
-          <author initials="B" surname="Fenner" fullname="">
-            <organization/>
-          </author>
-          <author initials="C" surname="Levert" fullname="">
-            <organization/>
-          </author>
-          <date month="February" day="28" year="2008"/>
-        </front>
-      </reference>
--->
       <reference anchor="templates" target="https://tools.ietf.org/tools/templates/">
         <front>
           <title>Templates directory</title>
