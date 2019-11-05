@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-03" submissionType="IETF" category="info" xml:lang="en" version="3" 
+     docName="FAQ-xml2rfcv3-04" submissionType="IETF" category="info" xml:lang="en" version="3" 
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intend for the HTML output to be read, not the text output -->
@@ -62,7 +62,7 @@ format. It handles boilerplate text and reference text. The HTML
 and PDF output formats have new features (such as including SVG figures and non-ASCII
 characters), and the source file can be used for metadata
 extraction.  Also, the RFC Editor will make use of your source file.
-(For background, see the <eref target="">RFC Format FAQ</eref>.)
+(For background, see the <eref target="https://www.rfc-editor.org/rse/format-faq/">RFC Format FAQ</eref>.)
 </t>
       </section>
       <section numbered="true" toc="default">
@@ -126,13 +126,13 @@ available, they will be posted in the same directory.
 </t>
       </section>
       <section numbered="true" toc="default">
-        <name>Can I do it without a template?</name>
+        <name>How can I do it without a template?</name>
 
         <t>
-Yes. We recommend converting a v2 XML to v3 XML using id2xml (see <xref
-target="q_id2xml"/>), and going from there. Put &lt;t&gt; tags around
-paragraphs, and &lt;figure&gt;&lt;artwork&gt; tags around figures. Use
-&lt;![CDATA[ ... ]]&gt; within sourcecode elements or artwork that contain the
+You can convert an existing XML file from the v2 vocabulary to the v3
+vocabulary using xml2rfc --v2v3 (see <xref target="q_convert_v2v3"/>), and
+go from there. Use &lt;t&gt; elements for paragraphs, and &lt;figure&gt;&lt;artwork&gt; elements for figures. Use
+&lt;![CDATA[ ... ]]&gt; within &lt;sourcecode&gt; or &lt;artwork&gt; elements that contain the
 less than character (&lt;). (See <xref target="q_CDATA" format="title"/> for
 more information.)
 </t>
@@ -392,6 +392,48 @@ Use the name element (child of the references element) as follows:
     </back>
 ]]></sourcecode>
       </section>
+
+      <section numbered="true" toc="default">
+        <name>How do I create a reference to a BCP (or STD) that contains
+	multiple RFCs?</name>
+        <t>
+Use &lt;referencegroup&gt; with an xi:include for each RFC inside of it:
+</t>
+        <sourcecode type="xml"><![CDATA[
+<referencegroup anchor="STD78" target="https://www.rfc-editor.org/info/std78">
+  <xi:include 
+   href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5343.xml"/>
+  <xi:include
+   href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5590.xml"/>
+  <xi:include
+   href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5591.xml"/>
+  <xi:include
+   href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6353.xml"/>
+</referencegroup>
+]]></sourcecode>
+<t>which yields</t>
+<artwork><![CDATA[
+  [STD78]    Schoenwaelder, J., "Simple Network Management Protocol
+             (SNMP) Context EngineID Discovery", STD 78, RFC 5343,
+             September 2008.
+
+             Harrington, D. and J. Schoenwaelder, "Transport Subsystem
+             for the Simple Network Management Protocol (SNMP)",
+             STD 78, RFC 5590, June 2009.
+
+             Harrington, D. and W. Hardaker, "Transport Security Model
+             for the Simple Network Management Protocol (SNMP)",
+             STD 78, RFC 5591, June 2009.
+
+             Hardaker, W., "Transport Layer Security (TLS) Transport
+             Model for the Simple Network Management Protocol (SNMP)",
+             STD 78, RFC 6353, July 2011.
+
+             <https://www.rfc-editor.org/info/std78>
+]]></artwork>
+      </section>
+
+
       <section numbered="true" toc="default">
         <name>How do I make a cross-reference to another section?</name>
 
@@ -1077,13 +1119,11 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
 </figure>
     ]]></sourcecode>
 
-
 <t>which yields:</t>
 <figure>
   <name>TCP Header Format</name>
   <artset>
-    <artwork alt="external file" type="svg" src="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg">
-    </artwork>
+    <artwork alt="TCP Header" type="svg" src="https://www.rfc-editor.org/materials/format/svg/tcp-header.svg"/>
     <artwork alt="TCP Header from RFC 793" type="ascii-art">
       <![CDATA[
     0                   1                   2                   3   
@@ -1158,9 +1198,8 @@ asterisks around the text, and &lt;tt&gt; yields quotation marks.</t></aside>
       </section>
 
       <section anchor="q_sourcecode" numbered="true" toc="default">
-        <name>What are the possible values for the type of the sourcecode element?</name>
-<t><tt>abnf, asn.1, bash, c++, c, cbor, dtd, java, javascript, json, mib,
-perl, pseudocode, python, rnc, xml,</tt> and <tt>yang.</tt></t>
+        <name>What are the preferred values for the type of the &lt;sourcecode&gt; element?</name>
+<t>Please see the list on <eref target="https://www.rfc-editor.org/materials/sourcecode-types.txt"/>.</t>
 <t>For details, see <xref target="RFC7991" section="2.48.4"/>.</t>
       </section>
 
@@ -1181,12 +1220,12 @@ clear.</t>
 
       <section anchor="q_rfcfiles" numbered="true" toc="default">
         <name>How do I download the XML source files for all RFCs?</name>
-<t>The source files of RFCs have changed over time. Most RFCs have
-NROFF source files; sometimes an XML file
-has been archived. You can request an XML source file
-directly from rfc-editor@rfc-editor.org. For RFCs created after the transition to
-using xml2rfc v3, the XML files
-will be available for download from <eref target="https://www.rfc-editor.org/retrieve/bulk"/>.
+<t>The source files of RFCs have changed over time. Most RFCs have NROFF
+source files; sometimes an XML file has been archived. You can request an XML
+source file directly from rfc-editor@rfc-editor.org. For RFCs created after
+the transition to xml2rfc v3, the XML files will be available
+for bulk download from <eref
+target="https://www.rfc-editor.org/retrieve/bulk"/>.
 </t>
       </section>
 
