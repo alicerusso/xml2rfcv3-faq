@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-04" submissionType="IETF" category="info" xml:lang="en" version="3" 
+     docName="FAQ-xml2rfcv3-06" submissionType="IETF" category="info" xml:lang="en" version="3" 
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intend for the HTML output to be read, not the text output -->
@@ -196,7 +196,7 @@ For example, putting it together:
     <section anchor="s_using_refs" numbered="true" toc="default">
       <name>Using References</name>
 
-      <section numbered="true" toc="default">
+      <section numbered="true" toc="default" anchor="q_add_reference">
         <name>How do I put in a reference?</name>
 
         <t>
@@ -206,31 +206,8 @@ RFCs, Internet-Drafts, and documents produced by the W3C and 3GPP, among
 others.
 </t>
         <t>
-To make use of the citation libraries, there are 2 methods:
-
-</t>
-        <ol spacing="normal" type="1">
-          <li>
-            <t>
-     define an ENTITY at the top:
-</t>
-            <sourcecode type="xml"><![CDATA[
-<!ENTITY RFC2119 SYSTEM 
-   "https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml">
-]]></sourcecode>
-            <t>
-
-and use &amp;RFC2119; in the references section
-</t>
-          </li>
-          <li>
-Note: As long as they match, the name you use in the ENTITY definition and the
-&amp;name; in the references section are your choice, and may be uppercase or
-lowercase (i.e., rfc2119 or RFC2119 or keywords). 
-</li>
-          <li>
-            <t>
-     use an include in the references section
+To make use of the citation libraries, use an xi:include in the references 
+section as follows.
 </t>
             <sourcecode type="xml"><![CDATA[
 <xi:include
@@ -238,14 +215,13 @@ lowercase (i.e., rfc2119 or RFC2119 or keywords).
 ]]></sourcecode>
             <t>
 
-For an Internet-Draft, the citation file uses the draft string. For example:
+For an Internet-Draft, the citation filename uses the draft string. For example:
 </t>
             <sourcecode type="xml"><![CDATA[
 <xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-wgname-topic.xml"/>
 ]]></sourcecode>
-          </li>
-        </ol>
+
         <t>Preferably, use the citation libraries when possible. However,
 another option is to include the complete reference element (see
 <xref target="q_full_ref" format="default"/>). Here's a template of a
@@ -270,7 +246,7 @@ All are cited textually in the same manner -- by using xref elements where the
 target corresponds to the anchor of the reference element, e.g., &lt;xref
 target="RFC2119" /&gt;. The anchors for RFCs are "RFCNNNN" (4 digits, using
 leading zeros) and the anchors for Internet-Drafts are "I-D.&lt;name without
-"draft-ietf-" or the version number&gt;".
+"draft-" or the version number&gt;".
 </t>
       </section>
       <section anchor="q_full_ref" numbered="true" toc="default">
@@ -334,7 +310,7 @@ yields:
 In the rfc element, set the attribute <tt>sortRefs="yes"</tt>.  Note that sortRefs only has an effect if <tt>symRefs="yes"</tt>.
 </t>
       </section>
-      <section numbered="true" toc="default">
+      <section numbered="true" toc="default" anchor="q_using_eref">
         <name>How do I reference a URL?</name>
 
         <t>
@@ -461,7 +437,7 @@ which yields
 (where the number of that section is determined dynamically).
 </t>
       </section>
-      <section anchor="q_relref" numbered="true" toc="default">
+      <section anchor="q_link_to_a_section" numbered="true" toc="default">
         <name>What about referring to a section in another document?
 	or How do I link to a section in another RFC?</name>
 
@@ -645,36 +621,36 @@ text (or across sections)?</name>
 Set the group attribute to the same value for each &lt;ol&gt; element. For example:</t>
 
 <sourcecode type="xml"><![CDATA[ <ol type="REQ%d:" group="reqs">
-  <li>MUST do a</li>
-  <li>MUST do b</li>
+  <li>do a</li>
+  <li>do b</li>
 </ol>
 <t>Here is text in between.</t>
 <ol type="REQ%d:" group="reqs">
-  <li>SHOULD do c</li>
-  <li>SHOULD do d</li>
+  <li>do c</li>
+  <li>do d</li>
 </ol>
 <t>Here is more text in between.</t>
 <ol type="REQ%d:" group="reqs">
-  <li>MAY do e</li>
-  <li>MAY do f</li>
+  <li>do e</li>
+  <li>do f</li>
 </ol>
 ]]></sourcecode>
 
 <t>yields:</t>
 
 <ol type="REQ%d:" group="reqs">
-  <li>MUST do a</li>
-  <li>MUST do b</li>
+  <li>do a</li>
+  <li>do b</li>
 </ol>
 <t>Here is text in between.</t>
 <ol type="REQ%d:" group="reqs">
-  <li>SHOULD do c</li>
-  <li>SHOULD do d</li>
+  <li>do c</li>
+  <li>do d</li>
 </ol>
 <t>Here is more text in between.</t>
 <ol type="REQ%d:" group="reqs">
-  <li>MAY do e</li>
-  <li>MAY do f</li>
+  <li>do e</li>
+  <li>do f</li>
 </ol>
 
 </section>
@@ -876,7 +852,7 @@ service on <eref target="https://xml2rfc.tools.ietf.org/"/>.
 
     </section>
 
-    <section numbered="true" toc="default">
+    <section numbered="true" toc="default" anchor="s_new_with_v3">
       <name>New with v3</name>
 
 <!-- TEMPLATE FOR A NEW QUESTION
@@ -891,13 +867,58 @@ service on <eref target="https://xml2rfc.tools.ietf.org/"/>.
       <name>How do I convert my XML file from v2 to v3 so I can make
       use of the new features?</name>
 
-      <t>On the command line: <tt>xml2rfc --v2v3 inputfile.xml</tt></t>
+      <t>On the command line: <tt>xml2rfc --v2v3 inputfile.xml</tt>. You can
+      use the <tt>--add-xinclude</tt> option to replace RFC and I-D reference elements
+      with the appropriate xi:include element.</t>
 
-      <t>Using the web service
+      <t>Or, using the web service
       (<eref target="https://xml2rfc.tools.ietf.org/experimental.html"/>),
       select "Output format: convert v2 to v3 XML".
       </t>
+
+      <t>After converting it to v3, please see <xref target="q_post_conversion_review"/>.</t>
       </section>
+
+
+      <section anchor="q_post_conversion_review" numbered="true" toc="default">
+      <name>After converting an XML file from v2 to v3, what further
+      updates might be needed for the v3 XML file?</name>
+
+      <t>You may want to do the following (for the sake of generating good
+      output and having a semantically accurate XML file):</t>
+      
+      <ul>
+	<li><t>Review each list.</t>
+	<ul>
+	  <li>Is it really a list? Or should indentation be added in another manner,
+	  e.g., <![CDATA[<blockquote>]]>.</li>
+	  <li>If so, should it be <![CDATA[<dl>, <ul>, or <ol>]]>? See <xref target="s_using_lists"/>.</li>
+	</ul>
+	</li>
+	
+	<li><t>Review each <![CDATA[<artwork>]]>.</t>
+	<ul>
+	  <li>Should it be <![CDATA[<sourcecode>]]>? If so, what type? See <xref target="q_sourcecode"/>.</li>
+	  <li>Should it be a table? See <xref target="q_table"/>.</li>
+	</ul>
+	</li>
+	
+<li>Search for URLs; should these be &lt;eref&gt;? See <xref target="q_using_eref"/>.</li>
+
+<li>Look for equations or other text where new features may improve
+clarity. See <xref target="q_new_features"/>.</li>
+
+<li>Search for hardcoded citation tags (e.g., [RFC5234]) and update to 
+&lt;xref&gt;s. See <xref target="q_add_reference"/>.</li>
+
+<li>Search for "section" and make a link for any section number in RFCs and
+I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
+ target="q_link_to_a_section"/>.</li>
+
+<li>Review postal addresses of authors; has each address been tagged correctly?</li>
+      </ul>
+      </section>
+
 
       <section anchor="q_new_features" numbered="true" toc="default">
 	<name>What are the new features with v3?</name>
@@ -1284,7 +1305,6 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
         <front>
           <title>xml2rfc</title>
           <author/>
-          <date/>
         </front>
       </reference>
       <reference anchor="howto" target="https://xml2rfc.ietf.org/authoring/draft-mrose-writing-rfcs.html">
@@ -1301,7 +1321,6 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
         <front>
           <title>Templates directory</title>
           <author/>
-          <date/>
         </front>
       </reference>
     </references>
