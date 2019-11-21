@@ -937,6 +937,71 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
       </ul>
       </section>
 
+      <section anchor="q_fix_upgrade_errors" numbered="true" toc="default">
+      <name>How do I fix common errors after the upgrade from v2 to v3?</name>
+
+      <dl>
+        <dt>
+        <tt>xml2rfc</tt> warns "Setting consensus="true" for IETF STD document".
+        </dt>
+        <dd>
+        This is being discussed <eref
+        target="https://mailarchive.ietf.org/arch/msg/xml2rfc-dev/mSSiTDx40dUuRH_f8QJmK0b7ths">on
+        the xml2rfc-dev list</eref>. You should disregard this warning for now.
+        </dd>
+
+        <dt>
+        <tt>xml2rfc</tt> fails with "Reserved anchor name: section-....  Don't
+        use anchor names beginning with one of u-, section-, iref-, figure-,
+        table-".
+        </dt>
+        <dd>
+        Rename your section.
+        </dd>
+      </dl>
+
+      <t>
+      Other errors can appear if you're using a helper tool to write your XML:
+      </t>
+
+        <section anchor="upgrade_errors_kramdown-rfc2629" numbered="true" toc="default">
+        <name>kramdown-rfc2629</name>
+
+        <t>If you're using <eref
+        target="https://github.com/cabo/kramdown-rfc2629">kramdown-rfc2629</eref>:</t>
+        <dl>
+          <dt>
+          If you don't specify a <tt>date</tt> for a reference, <tt>xml2rfc</tt>
+          fails with "Expected &lt;date> attribute "year" to be an integer, but
+          found "n.d.""
+          </dt>
+          <dd>
+          This issue is tracked in <eref
+          target="https://github.com/cabo/kramdown-rfc2629/issues/64"></eref>.
+          Add <tt>date: false</tt> to your reference to avoid the error.
+          </dd>
+        </dl>
+        </section>
+
+        <section anchor="upgrade_errors_i_d_template" numbered="true" toc="default">
+        <name>i-d-template</name>
+
+        <t>If you're using <eref
+        target="https://github.com/martinthomson/i-d-template">i-d-template</eref>:</t>
+        <dl>
+          <dt>
+          <tt>xml2rfc</tt> warns that "The 'docName' attribute of the &lt;rfc/>
+          element should have a revision number as the last component:
+          docName="draft-foo-bar-02"."
+          </dt>
+          <dd>
+          This issue is tracked in <eref
+          target="https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439"></eref>.
+          You can't modify your source to avoid it.
+          </dd>
+        </dl>
+        </section>
+      </section>
 
       <section anchor="q_new_features" numbered="true" toc="default">
 	<name>What are the new features with v3?</name>
