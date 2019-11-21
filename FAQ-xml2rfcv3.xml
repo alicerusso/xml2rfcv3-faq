@@ -112,6 +112,24 @@ Use the citation libraries online or maintain a local copy.
 Edit in your favorite editor or use an XML editor.
 </li>
         </ul>
+
+        <t>
+There are also tools available to let you edit non-XML source and then compile
+it to xml2rfc XML:
+</t>
+        <ul spacing="normal">
+          <li>
+<eref target="https://github.com/cabo/kramdown-rfc2629">kramdown-rfc2629</eref>
+</li>
+          <li>
+<eref target="https://mmark.miek.nl/post/about/">mmark</eref>
+</li>
+        </ul>
+
+        <t>
+If you intend to host your draft in <tt>git</tt> or on Github, see
+<eref target="https://ietf-gitwg.github.io/"></eref> for advice.
+</t>
       </section>
       <section anchor="q_templates" numbered="true" toc="default">
         <name>Where can I get a template?</name>
