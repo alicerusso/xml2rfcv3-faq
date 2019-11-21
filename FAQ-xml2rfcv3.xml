@@ -947,9 +947,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
         <dd>
         This is being discussed <eref
         target="https://mailarchive.ietf.org/arch/msg/xml2rfc-dev/mSSiTDx40dUuRH_f8QJmK0b7ths">on
-        the xml2rfc-dev list</eref>. You can add an explicit
-        <tt>consensus="true"</tt> attribute to your <tt>&lt;rfc></tt>
-        tag to avoid it, but that is likely to be semantically incorrect.
+        the xml2rfc-dev list</eref>. You should disregard this warning for now.
         </dd>
 
         <dt>
