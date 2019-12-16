@@ -187,13 +187,15 @@ For example, putting it together:
 </t>
         <sourcecode type="xml"><![CDATA[
 <rfc
+   xmlns:xi="http://www.w3.org/2001/XInclude"
    category="info"
    submissionType="IETF"
    ipr="trust200902"
    docName="draft-ietf-wgname-topic-00"
    updates="1234, 1235"
    obsoletes="1236"
-   sortRefs="true">
+   sortRefs="true"
+   version="3">
 ]]></sourcecode>
 
         <t>
@@ -1019,9 +1021,12 @@ characters in the following locations:
 <li>author name and organization (fullname, initials, and surname attributes;
 organization element). The asciiFullname,
 asciiInitials, and asciiSurnames attributes hold the ASCII equivalents.</li>
-<li>author's postal address  (street, city, region, code, and country elements)
+<li>author's postal address (street, city, region, code, and country elements)
 and author's email address. Each of these elements has an <tt>ascii</tt>
-attribute to hold the ASCII equivalent, which will also appear in the output format.</li>
+attribute to hold the ASCII equivalent, which will also appear in the output
+format.</li>
+<li>contact name and organization (same structure as &lt;author&gt; element)</li>
+<li>contact's postal address and email address (same structure as &lt;author&gt; element)</li>
 <li>body of the document (in &lt;sourcecode&gt; or using the &lt;u&gt; element; see below)</li>
 </ul>
 
@@ -1412,7 +1417,8 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
       <name>Acknowledgments</name>
       <t>
 This FAQ was made possible by the tools, documentation, and test files
-created by Henrik Levkowetz, Julian Reschke, Paul Hoffman, and Sandy Ginoza.
+created by <contact fullname="Henrik Levkowetz"/>, <contact fullname="Julian
+Reschke"/>, <contact fullname="Paul Hoffman"/>, and <contact fullname="Sandy Ginoza"/>.
 </t>
     </section>
 
