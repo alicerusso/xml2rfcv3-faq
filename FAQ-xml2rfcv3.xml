@@ -4,10 +4,10 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-07" submissionType="IETF" category="info" xml:lang="en" version="3"
+     docName="FAQ-xml2rfcv3-08" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
-  <!-- intend for the HTML output to be read, not the text output -->
+  <!-- intended for the HTML output to be read, not the text output -->
 
   <front>
     <title abbrev="xml2rfc FAQ">xml2rfc Frequently Asked Questions</title>
@@ -135,12 +135,12 @@ If you intend to host your draft in <tt>git</tt> or on Github, see
         <name>Where can I get a template?</name>
 
         <t>
-Several templates for xml2rfc v2 are available
+There is a v3 template available here: <eref
+target="https://tools.ietf.org/tools/templates/draft-davies-template-bare-07.xml"/>. In
+addition, several templates for xml2rfc v2 are available
 from <xref target="templates" format="default">https://tools.ietf.org/tools/templates</xref>. They
 include templates for a generic draft (e.g., draft-davies-template-bare.xml), as well as for a draft
-containing a MIB (e.g., mib-doc-template-xml.txt). They have not yet been
-updated for v3; when some are
-available, they will be posted in the same directory.
+containing a MIB module (e.g., mib-doc-template-xml.txt).
 </t>
       </section>
       <section numbered="true" toc="default">
@@ -148,11 +148,12 @@ available, they will be posted in the same directory.
 
         <t>
 You can convert an existing XML file from the v2 vocabulary to the v3
-vocabulary using xml2rfc --v2v3 (see <xref target="q_convert_v2v3"/>), and
-go from there. Use &lt;t&gt; elements for paragraphs, and &lt;figure&gt;&lt;artwork&gt; elements for figures. Use
-&lt;![CDATA[ ... ]]&gt; within &lt;sourcecode&gt; or &lt;artwork&gt; elements that contain the
-less than character (&lt;). (See <xref target="q_CDATA" format="title"/> for
-more information.)
+vocabulary using xml2rfc --v2v3 (see <xref target="q_convert_v2v3"/>), and go
+from there. Use &lt;t&gt; elements for paragraphs, and
+&lt;figure&gt;&lt;artwork&gt; elements for figures. Use &lt;![CDATA[
+... ]]&gt; within &lt;sourcecode&gt; or &lt;artwork&gt; elements that contain
+the less than character (&lt;). (See <xref target="q_CDATA" format="title"/>
+for more information.)
 </t>
         <t>
 To get a citation like "[RFC2119]", use <tt>&lt;xref
@@ -258,6 +259,7 @@ reference element:
             <date month="" year="" />
         </front>
         <seriesInfo name="" value="" />
+        <refcontent></refcontent>
     </reference>
 ]]></sourcecode>
 
@@ -1018,16 +1020,18 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
 characters in the following locations:
 </t>
 <ul>
-<li>author name and organization (fullname, initials, and surname attributes;
-organization element). The asciiFullname,
-asciiInitials, and asciiSurnames attributes hold the ASCII equivalents.</li>
-<li>author's postal address (street, city, region, code, and country elements)
-and author's email address. Each of these elements has an <tt>ascii</tt>
+<li>&lt;author&gt; element (using the fullname, initials, and surname attributes;
+where the the asciiFullname, asciiInitials, and asciiSurname attributes hold
+the ASCII equivalents)</li>
+<li>&lt;organization&gt; element</li>
+<li>author's postal address (using &lt;street&gt;, &lt;city&gt;, &lt;region&gt;, &lt;code&gt;, and &lt;country&gt; elements)
+and email address. Each of these elements has an <tt>ascii</tt>
 attribute to hold the ASCII equivalent, which will also appear in the output
 format.</li>
-<li>contact name and organization (same structure as &lt;author&gt; element)</li>
-<li>contact's postal address and email address (same structure as &lt;author&gt; element)</li>
-<li>body of the document (in &lt;sourcecode&gt; or using the &lt;u&gt; element; see below)</li>
+<li>&lt;contact&gt; element (same structure as for the &lt;author&gt; element)</li>
+<li>contact's postal address and email address (same structure as for the &lt;author&gt; element)</li>
+<li>body of the document (using the &lt;u&gt; element in &lt;sourcecode&gt;
+or &lt;artwork&gt; elements; see below)</li>
 </ul>
 
 <t>
@@ -1036,6 +1040,10 @@ set the format attribute (using the keywords num, name, lit, char, and ascii)
 to determine what is displayed in the output. See <xref
 target="I-D.levkowetz-xml2rfc-v3-implementation-notes" sectionFormat="of" section="A.1"/>.
 </t>
+
+<t>Below are examples of using</t>
+<sourcecode><![CDATA[<u format="num-lit">水</u>]]></sourcecode>
+<t>and various other options for the format attribute.</t>
 
 <dl newline="true">
 <dt>
@@ -1082,7 +1090,7 @@ target="I-D.levkowetz-xml2rfc-v3-implementation-notes" sectionFormat="of" sectio
 format="{lit} character ({num})":
 </dt>
 <dd>
-the <u format="{lit} character ({num})">水</u>
+the <u format="{lit} character ({num})">水</u>, often representing "water"
 </dd>
 </dl>
 
@@ -1273,12 +1281,12 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
 &lt;tt&gt; for <tt>fixed-width font</tt>.
 </li></ul>
 <aside><t>Note: in the text output, &lt;em&gt; yields underscores, &lt;strong&gt; yields
-asterisks around the text, and &lt;tt&gt; yields quotation marks.</t></aside>
+asterisks, and &lt;tt&gt; yields quotation marks.</t></aside>
       </section>
 
       <section anchor="q_subscript" numbered="true" toc="default">
         <name>How do I get subscript and superscript?</name>
-<t>Use &lt;sub&gt; for subscript, and &lt;sup&gt; for superscript.</t>
+<t>Use &lt;sub&gt; for subscript and &lt;sup&gt; for superscript.</t>
 
 <t>Example (using text from RFC 6330):</t>
 <ul>
@@ -1295,7 +1303,14 @@ asterisks around the text, and &lt;tt&gt; yields quotation marks.</t></aside>
    x<sub>3</sub> = (floor(y / 2<sup>24</sup>) + i) mod 2<sup>8</sup>
 </li>
 </ul>
-<!-- Original
+
+<aside>
+  <t>Note: in the text output, &lt;sub&gt; yields underscore and parentheses,
+  e.g., <tt>x_(1)</tt>,
+ &lt;sup&gt; yields carat and parentheses, e.g., <tt>2^(8)</tt>.</t>
+</aside>
+
+<!-- Original from RFC 6330
    o  x0 = (y + i) mod 2^^8
 
    o  x1 = (floor(y / 2^^8) + i) mod 2^^8
