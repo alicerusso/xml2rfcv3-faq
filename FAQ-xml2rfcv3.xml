@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-08" submissionType="IETF" category="info" xml:lang="en" version="3"
+     docName="FAQ-xml2rfcv3-09" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intended for the HTML output to be read, not the text output -->
@@ -50,7 +50,7 @@
 xml2rfc is a tool that lets you convert an XML source file into a text, HTML,
 PDF, expanded XML file, or various other options.  It is available from <xref target="xml2rfc" format="default">https://xml2rfc.tools.ietf.org</xref> as
 a web-based service or for download. Version 3 of the tool adds new
-features and will be used by the RFC Editor to create RFCs. The
+features and is used by the RFC Editor to create RFCs. The
 current version is here: <eref target="https://pypi.org/project/xml2rfc/"/>.
 </t>
       </section>
@@ -1016,27 +1016,35 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
 
       <section anchor="q_nonascii" numbered="true" toc="default">
         <name>How do I insert non-ASCII characters?</name>
-<t>With <tt>encoding="utf-8"</tt> in your XML file, you can use non-ASCII
-characters in the following locations:
-</t>
-<ul>
-<li>&lt;author&gt; element (using the fullname, initials, and surname attributes;
-where the the asciiFullname, asciiInitials, and asciiSurname attributes hold
-the ASCII equivalents)</li>
-<li>&lt;organization&gt; element</li>
-<li>author's postal address (using &lt;street&gt;, &lt;city&gt;, &lt;region&gt;, &lt;code&gt;, and &lt;country&gt; elements)
-and email address. Each of these elements has an <tt>ascii</tt>
-attribute to hold the ASCII equivalent, which will also appear in the output
-format.</li>
-<li>&lt;contact&gt; element (same structure as for the &lt;author&gt; element)</li>
-<li>contact's postal address and email address (same structure as for the &lt;author&gt; element)</li>
-<li>body of the document (using the &lt;u&gt; element in &lt;sourcecode&gt;
-or &lt;artwork&gt; elements; see below)</li>
-</ul>
+	<t>With <tt>encoding="utf-8"</tt> in your XML file, you can use non-ASCII
+	characters in the following locations:
+	</t>
+	<ul>
+	  <li>&lt;author&gt; element (using the <tt>fullname</tt>,
+	  <tt>initials</tt>, and <tt>surname</tt> attributes, while the
+	  <tt>asciiFullname</tt>, <tt>asciiInitials</tt>, and
+	  <tt>asciiSurname</tt> attributes hold the ASCII equivalents)</li>
+	  <li>&lt;organization&gt; element</li>
+	  <li>author's postal address (using &lt;street&gt;, &lt;city&gt;,
+	  &lt;region&gt;, &lt;code&gt;, and &lt;country&gt; elements) and
+	  email address. Each of these elements has an <tt>ascii</tt>
+	  attribute to hold the ASCII equivalent, which will also appear in
+	  the output format.</li>
+	  <li>&lt;contact&gt; element (same structure as for the
+	  &lt;author&gt; element)</li> <li>contact's postal address and email
+	  address (same structure as for the &lt;author&gt; element)</li>
+	  <li><t>body of the document</t>
+	  <ul spacing="compact">
+	    <li>by using the &lt;u&gt; element; see examples below, or</li>
+	    <li>directly in &lt;sourcecode&gt; or &lt;artwork&gt; elements (without
+	    the &lt;u&gt; element)</li>
+	  </ul>
+	  </li>
+	</ul>
 
-<t>
+	<t>
 The &lt;u&gt; element goes around a Unicode character;
-set the format attribute (using the keywords num, name, lit, char, and ascii)
+set the <tt>format</tt> attribute (using the keywords num, name, lit, char, and ascii)
 to determine what is displayed in the output. See <xref
 target="I-D.levkowetz-xml2rfc-v3-implementation-notes" sectionFormat="of" section="A.1"/>.
 </t>
@@ -1094,8 +1102,16 @@ the <u format="{lit} character ({num})">水</u>, often representing "water"
 </dd>
 </dl>
 
-
 <t>For background, see <xref target="RFC7997"/>.</t>
+
+<aside>
+<t>Note: If the non-ASCII characters are in the Unicode Latin blocks, then
+it's not necessary to use the attributes for ASCII equivalents. (For example,
+when a <tt>surname</tt> contains <u>ä</u>, it's not necessary to include
+<tt>asciiSurname</tt>.)
+</t>
+</aside>
+
       </section>
 
       <section anchor="q_table" numbered="true" toc="default">
