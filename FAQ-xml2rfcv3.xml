@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-09" submissionType="IETF" category="info" xml:lang="en" version="3"
+     docName="FAQ-xml2rfcv3-10" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intended for the HTML output to be read, not the text output -->
@@ -78,12 +78,13 @@ more details.
         <name>Where can I get more information?</name>
 	<ul>
           <li>Web service to convert a file: <eref target="https://xml2rfc.tools.ietf.org/experimental.html"/></li>
-	  <li>Introduction to xml2rfc v3 <eref target="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html"/></li>
+	  <li>Introduction to xml2rfc v3: <eref target="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html"/></li>
           <li>
-	    The v3 vocabulary: <xref target="RFC7991"/> and <xref
-	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/> describe
-	    the v3 XML schema
+	    The v3 vocabulary: described in <xref target="RFC7991"/> and <xref
+	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/>.
           </li>
+          <li>The schema in RelaxNG: <eref target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</eref>
+	  (which includes the schema of the SVG profile: <eref target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</eref>).</li>
           <li>
 	    xml2rfc mailing list: <eref target="https://www.ietf.org/mailman/listinfo/xml2rfc"/>
           </li>
@@ -103,7 +104,7 @@ You have several choices when getting started with xml2rfc, such as:
 </t>
         <ul spacing="normal">
           <li>
-Use the tool on the web (<eref target="https://xml2rfc.tools.ietf.org/experimental.html"/>) or install it locally (<eref target="https://pypi.org/xml2rfc"/>).
+Use the tool on the web (<eref target="https://xml2rfc.tools.ietf.org/experimental.html"/>) or install it locally (<eref target="https://pypi.org/project/xml2rfc"/>).
 </li>
           <li>
 Use the citation libraries online or maintain a local copy.
@@ -809,6 +810,16 @@ Use the role attribute of the author element. For example:
 ]]></sourcecode>
       </section>
 
+      <section numbered="true" toc="default" anchor="using_contact">
+        <name>How do I list the contributors or include acknowledgments?</name>
+	<t>In a "Contributors" section, you can use the &lt;contact&gt;
+	element, which has the same structure as the &lt;author&gt; element.
+	Including address information is optional. 
+	</t>
+	<t>In an "Acknowledgments" section, you can use the &lt;contact&gt; element
+	within &lt;t&gt; to list inviduals' names (typically without address information).</t>
+      </section>
+
       <section numbered="true" toc="default">
         <name>How do I insert questions for my coauthors?</name>
         <t>
@@ -1339,8 +1350,27 @@ asterisks, and &lt;tt&gt; yields quotation marks.</t></aside>
 
       <section anchor="q_sourcecode" numbered="true" toc="default">
         <name>What are the preferred values for the type of the &lt;sourcecode&gt; element?</name>
-<t>Please see the list on <eref target="https://www.rfc-editor.org/materials/sourcecode-types.txt"/>.</t>
-<t>For details, see <xref target="RFC7991" section="2.48.4"/>.</t>
+<t>Please see the list on <eref
+target="https://www.rfc-editor.org/materials/sourcecode-types.txt"/>.</t> 
+<t>For more information, see <xref target="RFC7991" section="2.48.4"/>.</t>
+      </section>
+
+      <section anchor="q_yang" numbered="true" toc="default">
+	<name>How should a YANG module appear?</name>
+
+	<t>For a YANG module, please use &lt;sourcecode&gt; with type="yang"
+	and markers="true". The latter creates the &lt;CODE BEGINS&gt; and
+	&lt;CODE ENDS&gt; tags in the output. If you set the name attribute, the
+	filename will appear in the output. For example:</t>
+<sourcecode><![CDATA[
+<sourcecode type="yang" markers="true" name="foo.yang">
+]]></sourcecode>
+<t>yields</t>
+<sourcecode><![CDATA[ 
+<CODE BEGINS> file "foo.yang"
+  [...]
+<CODE ENDS>
+]]></sourcecode>
       </section>
 
       <section anchor="q_bcp14" numbered="true" toc="default">
