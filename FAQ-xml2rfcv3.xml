@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-10" submissionType="IETF" category="info" xml:lang="en" version="3"
+     docName="FAQ-xml2rfcv3-11" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intended for the HTML output to be read, not the text output -->
@@ -80,16 +80,20 @@ more details.
           <li>Web service to convert a file: <eref target="https://xml2rfc.tools.ietf.org/experimental.html"/></li>
 	  <li>Introduction to xml2rfc v3: <eref target="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html"/></li>
           <li>
-	    The v3 vocabulary: described in <xref target="RFC7991"/> and <xref
-	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/>.
+	    The v3 vocabulary: See <eref
+	    target="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html">"Xml2rfc
+	    Vocabulary Version 3 Schema"</eref>.
+	    (Earlier documentation is in <xref target="RFC7991"/> and <xref
+	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/>.)
           </li>
-          <li>The schema in RelaxNG: <eref target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</eref>
+          <li>The schema in RelaxNG: <eref
+	    target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</eref>
 	  (which includes the schema of the SVG profile: <eref target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</eref>).</li>
           <li>
 	    xml2rfc mailing list: <eref target="https://www.ietf.org/mailman/listinfo/xml2rfc"/>
           </li>
 	  <li>Report a bug in xml2rfc: <eref
-	  target="https://trac.tools.ietf.org/tools/xml2rfc/trac"/></li>
+	  target="https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1"/></li>
         </ul>
       </section>
     </section>
@@ -594,7 +598,7 @@ and <xref target="RFC3550" section="6" sectionFormat="bare" /> in
 	  </t>
 
 <t>
-For full details, see <xref target="RFC7991" sectionFormat="of" section="2.34.5"/>.
+For full details, see <xref target="RFC7991" sectionFormat="of" section="2.34.5"/> and the <eref target="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-type-attribute-5">schema documentation</eref>.
 
 </t>
         <ul empty="true" spacing="normal">
@@ -1056,8 +1060,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
 	<t>
 The &lt;u&gt; element goes around a Unicode character;
 set the <tt>format</tt> attribute (using the keywords num, name, lit, char, and ascii)
-to determine what is displayed in the output. See <xref
-target="I-D.levkowetz-xml2rfc-v3-implementation-notes" sectionFormat="of" section="A.1"/>.
+to indicate what is rendered in the output. See the <eref target="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-u-new-2">schema documentation</eref>.
 </t>
 
 <t>Below are examples of using</t>
@@ -1334,7 +1337,7 @@ asterisks, and &lt;tt&gt; yields quotation marks.</t></aside>
 <aside>
   <t>Note: in the text output, &lt;sub&gt; yields underscore and parentheses,
   e.g., <tt>x_(1)</tt>,
- &lt;sup&gt; yields carat and parentheses, e.g., <tt>2^(8)</tt>.</t>
+ &lt;sup&gt; yields caret and parentheses, e.g., <tt>2^(8)</tt>.</t>
 </aside>
 
 <!-- Original from RFC 6330
@@ -1479,7 +1482,7 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
       <t>
 This FAQ was made possible by the tools, documentation, and test files
 created by <contact fullname="Henrik Levkowetz"/>, <contact fullname="Julian
-Reschke"/>, <contact fullname="Paul Hoffman"/>, and <contact fullname="Sandy Ginoza"/>.
+Reschke"/>, <contact fullname="Paul Hoffman"/>, and <contact fullname="Sandy Ginoza"/>. Also, thanks to <contact fullname="Jeffrey Yaskin"/> for contributing.
 </t>
     </section>
 

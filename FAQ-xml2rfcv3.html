@@ -16,8 +16,28 @@
       v2 .
        
     " name="description">
-<meta content="xml2rfc 2.46.0" name="generator">
-<meta content="FAQ-xml2rfcv3-10" name="ietf.draft">
+<meta content="xml2rfc 3.5.0" name="generator">
+<meta content="FAQ-xml2rfcv3-11" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.5.0
+    Python 3.6.10
+    appdirs 1.4.4
+    ConfigArgParse 1.2.3
+    google-i18n-address 2.3.5
+    html5lib 1.0.1
+    intervaltree 3.0.2
+    Jinja2 2.11.2
+    kitchen 1.2.6
+    lxml 4.4.2
+    pycairo 1.19.0
+    pycountry 19.8.18
+    pyflakes 2.1.1
+    PyYAML 5.3.1
+    requests 2.22.0
+    setuptools 40.6.2
+    six 1.14.0
+    WeasyPrint 51
+-->
 <link href="FAQ-xml2rfcv3.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -1112,8 +1132,39 @@ section .olCompact {
 tt, code {
   background-color: transparent;
 }
-p tt, p code {
-  background-color: #f9f9f9;
+p tt, p code, li tt, li code {
+  background-color: #f8f8f8;
+}
+/* Tweak the pre margin -- 0px doesn't come out well */
+pre {
+   margin-top: 0.5px;
+}
+/* Tweak the comact list text */
+ul.compact, .ulCompact,
+ol.compact, .olCompact,
+dl.compact, .dlCompact {
+  line-height: normal;
+}
+/* Don't add top margin for nested lists */
+li > ul, li > ol, li > dl,
+dd > ul, dd > ol, dd > dl,
+dl > dd > dl {
+  margin-top: initial;
+}
+/* Elements that should not be rendered on the same line as a <dt> */
+/* This should match the element list in writer.text.TextWriter.render_dl() */
+dd > div.artwork:first-child,
+dd > aside:first-child,
+dd > figure:first-child,
+dd > ol:first-child,
+dd > div:first-child > pre.sourcecode,
+dd > table:first-child,
+dd > ul:first-child {
+  clear: left;
+}
+/* fix for weird browser behaviour when <dd/> is empty */
+dt+dd:empty::before{
+  content: "\00a0";
 }
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
@@ -1124,7 +1175,7 @@ p tt, p code {
 <thead><tr>
 <td class="left"></td>
 <td class="center">xml2rfc FAQ</td>
-<td class="right">July 2020</td>
+<td class="right">December 2020</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Russo</td>
@@ -1135,14 +1186,6 @@ p tt, p code {
 <div id="external-metadata" class="document-information"></div>
 <div id="internal-metadata" class="document-information">
 <dl id="identifiers">
-<dt class="label-workgroup">Workgroup:</dt>
-<dd class="workgroup">Network Working Group</dd>
-<dt class="label-published">Published:</dt>
-<dd class="published">
-<time datetime="2020-07-15" class="published">15 July 2020</time>
-    </dd>
-<dt class="label-intended-status">Intended Status:</dt>
-<dd class="intended-status">Informational</dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1431,7 +1474,9 @@ more details.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
           <li class="normal" id="section-1.4-1.2">Introduction to xml2rfc v3: <span><a href="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html">https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html</a></span><a href="#section-1.4-1.2" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-1.3">
-     The v3 vocabulary: described in <span>[<a href="#RFC7991" class="xref">RFC7991</a>]</span> and <span>[<a href="#I-D.levkowetz-xml2rfc-v3-implementation-notes" class="xref">I-D.levkowetz-xml2rfc-v3-implementation-notes</a>]</span>.<a href="#section-1.4-1.3" class="pilcrow">¶</a>
+     The v3 vocabulary: See <a href="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html">"Xml2rfc
+     Vocabulary Version 3 Schema"</a>.
+     (Earlier documentation is in <span>[<a href="#RFC7991" class="xref">RFC7991</a>]</span> and <span>[<a href="#I-D.levkowetz-xml2rfc-v3-implementation-notes" class="xref">I-D.levkowetz-xml2rfc-v3-implementation-notes</a>]</span>.)<a href="#section-1.4-1.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.4-1.4">The schema in RelaxNG: <a href="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</a>
    (which includes the schema of the SVG profile: <a href="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</a>).<a href="#section-1.4-1.4" class="pilcrow">¶</a>
@@ -1439,7 +1484,7 @@ more details.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
           <li class="normal" id="section-1.4-1.5">
      xml2rfc mailing list: <span><a href="https://www.ietf.org/mailman/listinfo/xml2rfc">https://www.ietf.org/mailman/listinfo/xml2rfc</a></span><a href="#section-1.4-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.4-1.6">Report a bug in xml2rfc: <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac">https://trac.tools.ietf.org/tools/xml2rfc/trac</a></span><a href="#section-1.4-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.4-1.6">Report a bug in xml2rfc: <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1">https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1</a></span><a href="#section-1.4-1.6" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1669,7 +1714,7 @@ the nickname. Tip: place it before the first <code>references</code> element. Fo
 yields:<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-3.4-4">
           <dt id="section-3.4-4.1"><strong>[IKEv2]</strong></dt>
-          <dd id="section-3.4-4.2">Kaufman, C., Hoffman, P., Nir, Y., Eronen, P., and T. Kivinen, "Internet Key Exchange Protocol Version 2 (IKEv2)", STD 79, RFC 7296, DOI 10.17487/RFC7296, October 2014,  &lt;<span><a href="https://www.rfc-editor.org/info/rfc7296">https://www.rfc-editor.org/info/rfc7296</a></span>&gt;.<a href="#section-3.4-4.2" class="pilcrow">¶</a>
+          <dd style="margin-left: 1.5em" id="section-3.4-4.2">Kaufman, C., Hoffman, P., Nir, Y., Eronen, P., and T. Kivinen, "Internet Key Exchange Protocol Version 2 (IKEv2)", STD 79, RFC 7296, DOI 10.17487/RFC7296, October 2014,  &lt;<span><a href="https://www.rfc-editor.org/info/rfc7296">https://www.rfc-editor.org/info/rfc7296</a></span>&gt;.<a href="#section-3.4-4.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1827,28 +1872,28 @@ Use &lt;xref&gt; and set the sectionFormat attribute to various options.<a href=
           <dt id="section-3.10-2.1">
           sectionFormat="of":
           </dt>
-          <dd id="section-3.10-2.2">
+          <dd style="margin-left: 1.5em" id="section-3.10-2.2">
           See <span><a href="https://www.rfc-editor.org/rfc/rfc7991#section-1.3" class="relref">Section 1.3</a> of [<a href="#RFC7991" class="xref">RFC7991</a>]</span>.<a href="#section-3.10-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.10-2.3">
           sectionFormat="comma":
           </dt>
-          <dd id="section-3.10-2.4">
+          <dd style="margin-left: 1.5em" id="section-3.10-2.4">
           See <span>[<a href="#RFC7991" class="xref">RFC7991</a>], <a href="https://www.rfc-editor.org/rfc/rfc7991#section-1.3" class="relref">Section 1.3</a></span>.<a href="#section-3.10-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.10-2.5">
           sectionFormat="parens":
           </dt>
-          <dd id="section-3.10-2.6">
+          <dd style="margin-left: 1.5em" id="section-3.10-2.6">
           See <span>[<a href="#RFC7991" class="xref">RFC7991</a>] (<a href="https://www.rfc-editor.org/rfc/rfc7991#section-1.3" class="relref">Section 1.3</a>)</span>.<a href="#section-3.10-2.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-3.10-2.7">
           sectionFormat="bare":
           </dt>
-          <dd id="section-3.10-2.8">
+          <dd style="margin-left: 1.5em" id="section-3.10-2.8">
           See <a href="https://www.rfc-editor.org/rfc/rfc7991#section-1.3" class="relref">1.3</a>.<a href="#section-3.10-2.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -1856,7 +1901,7 @@ Use &lt;xref&gt; and set the sectionFormat attribute to various options.<a href=
           (default) When sectionFormat is not set at all, the output is the same as
    "of":
           </dt>
-          <dd id="section-3.10-2.10">
+          <dd style="margin-left: 1.5em" id="section-3.10-2.10">
           See <span><a href="https://www.rfc-editor.org/rfc/rfc7991#section-1.3" class="relref">Section 1.3</a> of [<a href="#RFC7991" class="xref">RFC7991</a>]</span>.<a href="#section-3.10-2.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd></dl>
@@ -1941,7 +1986,7 @@ and <a href="https://www.rfc-editor.org/rfc/rfc3550#section-6" class="relref">6<
      For numbers or letters, use the type attribute of the &lt;ol&gt;
      element; examples below.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">
-For full details, see <span><a href="https://www.rfc-editor.org/rfc/rfc7991#section-2.34.5" class="relref">Section 2.34.5</a> of [<a href="#RFC7991" class="xref">RFC7991</a>]</span>.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+For full details, see <span><a href="https://www.rfc-editor.org/rfc/rfc7991#section-2.34.5" class="relref">Section 2.34.5</a> of [<a href="#RFC7991" class="xref">RFC7991</a>]</span> and the <a href="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-type-attribute-5">schema documentation</a>.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-4.1-6.1">
     type="1" --&gt; 1, 2, 3, ...<a href="#section-4.1-6.1" class="pilcrow">¶</a>
@@ -2012,7 +2057,7 @@ Set the group attribute to the same value for each &lt;ol&gt; element. For examp
 </div>
 <p id="section-4.3-3">yields:<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="olPercent" id="section-4.3-4">
-          <dt>REQ1:</dt>
+  <dt>REQ1:</dt>
 <dd id="section-4.3-4.1">do a<a href="#section-4.3-4.1" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -2023,7 +2068,7 @@ Set the group attribute to the same value for each &lt;ol&gt; element. For examp
 </dl>
 <p id="section-4.3-5">Here is text in between.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="olPercent" id="section-4.3-6">
-          <dt>REQ3:</dt>
+  <dt>REQ3:</dt>
 <dd id="section-4.3-6.1">do c<a href="#section-4.3-6.1" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -2034,7 +2079,7 @@ Set the group attribute to the same value for each &lt;ol&gt; element. For examp
 </dl>
 <p id="section-4.3-7">Here is more text in between.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="olPercent" id="section-4.3-8">
-          <dt>REQ5:</dt>
+  <dt>REQ5:</dt>
 <dd id="section-4.3-8.1">do e<a href="#section-4.3-8.1" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -2073,12 +2118,12 @@ For example:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <p id="section-4.4-4">yields:<a href="#section-4.4-4" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.4-5">
           <dt id="section-4.4-5.1">Unassigned:</dt>
-          <dd id="section-4.4-5.2">Unused and available for assignment via
+          <dd style="margin-left: 1.5em" id="section-4.4-5.2">Unused and available for assignment via
   documented procedures.<a href="#section-4.4-5.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.4-5.3">Reserved:</dt>
-          <dd id="section-4.4-5.4">Not to be assigned.  Reserved values are
+          <dd style="margin-left: 1.5em" id="section-4.4-5.4">Not to be assigned.  Reserved values are
   held for special uses, such as to extend the namespace
   when it become exhausted.  Reserved values are not
   available for general assignment.<a href="#section-4.4-5.4" class="pilcrow">¶</a>
@@ -2107,12 +2152,12 @@ break after the term. For example:<a href="#section-4.4-7" class="pilcrow">¶</a
 <p id="section-4.4-9">yields:<a href="#section-4.4-9" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlNewline" id="section-4.4-10">
           <dt id="section-4.4-10.1">Unassigned:</dt>
-          <dd id="section-4.4-10.2">Unused and available for assignment via
+          <dd style="margin-left: 1.5em" id="section-4.4-10.2">Unused and available for assignment via
   documented procedures.<a href="#section-4.4-10.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.4-10.3">Reserved:</dt>
-          <dd id="section-4.4-10.4">Not to be assigned.  Reserved values are
+          <dd style="margin-left: 1.5em" id="section-4.4-10.4">Not to be assigned.  Reserved values are
   held for special uses, such as to extend the namespace
   when it become exhausted.  Reserved values are not
   available for general assignment.<a href="#section-4.4-10.4" class="pilcrow">¶</a>
@@ -2325,7 +2370,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
           <dt id="section-7.3-1.1">
         <code>xml2rfc</code> warns "Setting consensus="true" for IETF STD document".
           </dt>
-          <dd id="section-7.3-1.2">
+          <dd style="margin-left: 1.5em" id="section-7.3-1.2">
         This is being discussed <a href="https://mailarchive.ietf.org/arch/msg/xml2rfc-dev/mSSiTDx40dUuRH_f8QJmK0b7ths">on
         the xml2rfc-dev list</a>. You should disregard this warning for now.<a href="#section-7.3-1.2" class="pilcrow">¶</a>
 </dd>
@@ -2335,7 +2380,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
         use anchor names beginning with one of u-, section-, iref-, figure-,
         table-".
           </dt>
-          <dd id="section-7.3-1.4">
+          <dd style="margin-left: 1.5em" id="section-7.3-1.4">
         Rename your section.<a href="#section-7.3-1.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -2354,7 +2399,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
           fails with "Expected &lt;date&gt; attribute "year" to be an integer, but
           found "n.d.""
             </dt>
-            <dd id="section-7.3.1-2.2">
+            <dd style="margin-left: 1.5em" id="section-7.3.1-2.2">
           This issue is tracked in <span><a href="https://github.com/cabo/kramdown-rfc2629/issues/64">https://github.com/cabo/kramdown-rfc2629/issues/64</a></span>.
           Add <code>date: false</code> to your reference to avoid the error.<a href="#section-7.3.1-2.2" class="pilcrow">¶</a>
 </dd>
@@ -2374,7 +2419,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
           element should have a revision number as the last component:
           docName="draft-foo-bar-02"."
             </dt>
-            <dd id="section-7.3.2-2.2">
+            <dd style="margin-left: 1.5em" id="section-7.3.2-2.2">
           This issue is tracked in <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439">https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439</a></span>.
           You can't modify your source to avoid it.<a href="#section-7.3.2-2.2" class="pilcrow">¶</a>
 </dd>
@@ -2434,7 +2479,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
 <p id="section-7.5-3">
 The &lt;u&gt; element goes around a Unicode character;
 set the <code>format</code> attribute (using the keywords num, name, lit, char, and ascii)
-to determine what is displayed in the output. See <span><a href="https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-10#appendix-A.1" class="relref">Appendix A.1</a> of [<a href="#I-D.levkowetz-xml2rfc-v3-implementation-notes" class="xref">I-D.levkowetz-xml2rfc-v3-implementation-notes</a>]</span>.<a href="#section-7.5-3" class="pilcrow">¶</a></p>
+to indicate what is rendered in the output. See the <a href="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-u-new-2">schema documentation</a>.<a href="#section-7.5-3" class="pilcrow">¶</a></p>
 <p id="section-7.5-4">Below are examples of using<a href="#section-7.5-4" class="pilcrow">¶</a></p>
 <div id="section-7.5-5">
 <pre class="sourcecode">&lt;u format="num-lit"&gt;水&lt;/u&gt;</pre><a href="#section-7.5-5" class="pilcrow">¶</a>
@@ -2444,49 +2489,49 @@ to determine what is displayed in the output. See <span><a href="https://tools.i
           <dt id="section-7.5-7.1">
       format="num-lit":
 </dt>
-          <dd id="section-7.5-7.2">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.2">
    a single character <span class="unicode">U+6C34 ("水")</span>, often representing "water"<a href="#section-7.5-7.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.3">
       format="num-name":
 </dt>
-          <dd id="section-7.5-7.4">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.4">
    a single character <span class="unicode">U+6C34 (CJK UNIFIED IDEOGRAPH-6C34)</span>, often representing "water"<a href="#section-7.5-7.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.5">
       format="num-lit-name":
 </dt>
-          <dd id="section-7.5-7.6">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.6">
    a single character <span class="unicode">U+6C34 ("水", CJK UNIFIED IDEOGRAPH-6C34)</span>, often representing "water"<a href="#section-7.5-7.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.7">
       format="num-name-lit":
 </dt>
-          <dd id="section-7.5-7.8">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.8">
    a single character <span class="unicode">U+6C34 (CJK UNIFIED IDEOGRAPH-6C34, "水")</span>, often representing "water"<a href="#section-7.5-7.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.9">
       format="name-lit-num":
 </dt>
-          <dd id="section-7.5-7.10">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.10">
    a single character <span class="unicode">CJK UNIFIED IDEOGRAPH-6C34 ("水", U+6C34)</span>, often representing "water"<a href="#section-7.5-7.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.11">
       format="lit-name-num" (default):
 </dt>
-          <dd id="section-7.5-7.12">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.12">
    a single character <span class="unicode">"水" (CJK UNIFIED IDEOGRAPH-6C34, U+6C34)</span>, often representing "water"<a href="#section-7.5-7.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.5-7.13">
 format="{lit} character ({num})":
 </dt>
-          <dd id="section-7.5-7.14">
+          <dd style="margin-left: 1.5em" id="section-7.5-7.14">
 the <span class="unicode">"水" character (U+6C34)</span>, often representing "water"<a href="#section-7.5-7.14" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -3038,7 +3083,7 @@ asterisks, and &lt;tt&gt; yields quotation marks.<a href="#section-7.9-3.1" clas
 <aside id="section-7.10-4">
           <p id="section-7.10-4.1">Note: in the text output, &lt;sub&gt; yields underscore and parentheses,
   e.g., <code>x_(1)</code>,
- &lt;sup&gt; yields carat and parentheses, e.g., <code>2^(8)</code>.<a href="#section-7.10-4.1" class="pilcrow">¶</a></p>
+ &lt;sup&gt; yields caret and parentheses, e.g., <code>2^(8)</code>.<a href="#section-7.10-4.1" class="pilcrow">¶</a></p>
 </aside>
 </section>
 </div>
@@ -3126,7 +3171,7 @@ for bulk download from <span><a href="https://www.rfc-editor.org/retrieve/bulk">
 <dd class="break"></dd>
 <dt id="I-D.levkowetz-xml2rfc-v3-implementation-notes">[I-D.levkowetz-xml2rfc-v3-implementation-notes]</dt>
       <dd>
-<span class="refAuthor">Levkowetz, H.</span>, <span class="refTitle">"Implementation notes for RFC7991, "The 'xml2rfc' Version 3 Vocabulary""</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-levkowetz-xml2rfc-v3-implementation-notes-10</span>, <time datetime="2019-10-15" class="refDate">15 October 2019</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-10">https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Levkowetz, H.</span>, <span class="refTitle">"Implementation notes for RFC7991,"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-levkowetz-xml2rfc-v3-implementation-notes-12</span>, <time datetime="2020-12-15" class="refDate">15 December 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-12">https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7296">[IKEv2]</dt>
       <dd>
@@ -3168,7 +3213,7 @@ for bulk download from <span><a href="https://www.rfc-editor.org/retrieve/bulk">
       </h2>
 <p id="section-appendix.a-1">
 This FAQ was made possible by the tools, documentation, and test files
-created by <span class="contact-name">Henrik Levkowetz</span>, <span class="contact-name">Julian Reschke</span>, <span class="contact-name">Paul Hoffman</span>, and <span class="contact-name">Sandy Ginoza</span>.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
+created by <span class="contact-name">Henrik Levkowetz</span>, <span class="contact-name">Julian Reschke</span>, <span class="contact-name">Paul Hoffman</span>, and <span class="contact-name">Sandy Ginoza</span>. Also, thanks to <span class="contact-name">Jeffrey Yaskin</span> for contributing.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
 </section>
 <div id="authors-addresses">
 <section id="section-appendix.b">
