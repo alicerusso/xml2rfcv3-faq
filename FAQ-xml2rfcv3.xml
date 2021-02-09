@@ -4,7 +4,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-11" submissionType="IETF" category="info" xml:lang="en" version="3"
+     docName="FAQ-xml2rfcv3-12" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
   <!-- intended for the HTML output to be read, not the text output -->
@@ -1404,7 +1404,8 @@ target="https://www.rfc-editor.org/retrieve/bulk"/>.
 
       <section anchor="q_deprecated" numbered="true" toc="default">
         <name>What has been deprecated from xml2rfc v2?</name>
-<t>See <xref target="RFC7991" sectionFormat="of" section="1.3.3"/>.</t>
+<t>Please see <eref target="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-deprecated-elements-and-attr">"Deprecated Elements and Attributes"</eref> in the schema documentation.
+</t>
       </section>
     </section>
 
