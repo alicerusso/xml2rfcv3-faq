@@ -16,27 +16,27 @@
       v2 .
        
     " name="description">
-<meta content="xml2rfc 3.5.0" name="generator">
-<meta content="FAQ-xml2rfcv3-12" name="ietf.draft">
+<meta content="xml2rfc 3.10.0" name="generator">
+<meta content="FAQ-xml2rfcv3-14" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.5.0
-    Python 3.6.10
+  xml2rfc 3.10.0
+    Python 3.6.13
     appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.3.5
+    ConfigArgParse 1.4.1
+    google-i18n-address 2.4.0
     html5lib 1.0.1
     intervaltree 3.0.2
-    Jinja2 2.11.2
+    Jinja2 2.11.3
     kitchen 1.2.6
     lxml 4.4.2
-    pycairo 1.19.0
+    pycairo 1.15.1
     pycountry 19.8.18
     pyflakes 2.1.1
-    PyYAML 5.3.1
-    requests 2.22.0
-    setuptools 40.6.2
+    PyYAML 5.4.1
+    requests 2.24.0
+    setuptools 40.5.0
     six 1.14.0
-    WeasyPrint 51
+    WeasyPrint 52.5
 -->
 <link href="FAQ-xml2rfcv3.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -205,6 +205,9 @@ ul.empty, .ulEmpty {
 }
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
+}
+ul.ulBare, li.ulBare {
+  margin-left: 0em !important;
 }
 ul.compact, .ulCompact,
 ol.compact, .olCompact {
@@ -388,6 +391,12 @@ hr {
 #identifiers dd {
   float: left;
   margin-bottom: 0;
+}
+/* Fix PDF info block run off issue */
+@media print {
+  #identifiers dd {
+    float: none;
+  }
 }
 #identifiers .authors .author {
   display: inline-block;
@@ -1083,7 +1092,7 @@ tr:nth-child(2n+1) > td {
 }
 /* Change the approach to avoiding breaks inside artwork etc. */
 figure, pre, table, .artwork, .sourcecode  {
-  break-before: avoid-page;
+  break-before: auto;
   break-after: auto;
 }
 /* Avoid breaks between <dt> and <dd> */
@@ -1166,6 +1175,14 @@ dd > ul:first-child {
 dt+dd:empty::before{
   content: "\00a0";
 }
+/* Make paragraph spacing inside <li> smaller than in body text, to fit better within the list */
+li > p {
+  margin-bottom: 0.5em
+}
+/* Don't let p margin spill out from inside list items */
+li > p:last-of-type {
+  margin-bottom: 0;
+}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
 </head>
@@ -1175,7 +1192,7 @@ dt+dd:empty::before{
 <thead><tr>
 <td class="left"></td>
 <td class="center">xml2rfc FAQ</td>
-<td class="right">February 2021</td>
+<td class="right">October 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Russo</td>
@@ -1203,7 +1220,7 @@ dt+dd:empty::before{
  that can be used to create Internet-Drafts or RFCs.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2"><strong>This FAQ is for version 3 of xml2rfc; the vocabulary has been
       changed significantly from version 2.</strong> For guidance on version
-      2, please see the <a href="https://xml2rfc.tools.ietf.org/xml2rfcFAQ.html">FAQ for xml2rfc
+      2, please see the <a href="https://xml2rfc.tools.org/xml2rfcFAQ.html">FAQ for xml2rfc
       v2</a>.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note" id="section-note.1">
@@ -1219,209 +1236,212 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-the-basics" class="xref">The Basics</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-what-is-xml2rfc" class="xref">What is xml2rfc?</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-the-basics" class="xref">The Basics</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
+                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-what-is-xml2rfc" class="xref">What is xml2rfc?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.2">
-                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-why-should-i-use-xml2rfc" class="xref">Why should I use xml2rfc?</a><a href="#section-toc.1-1.1.2.2.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
+                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-why-should-i-use-xml2rfc" class="xref">Why should I use xml2rfc?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.3">
-                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-how-much-xml-do-i-need-to-k" class="xref">How much XML do I need to know?</a><a href="#section-toc.1-1.1.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.3">
+                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="xref">1.3</a>.  <a href="#name-how-much-xml-do-i-need-to-k" class="xref">How much XML do I need to know?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.1.2.4">
-                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="xref">1.4</a>.  <a href="#name-where-can-i-get-more-inform" class="xref">Where can I get more information?</a><a href="#section-toc.1-1.1.2.4.1" class="pilcrow">¶</a></p>
-</li>
-            </ul>
-</li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-creating-a-draft" class="xref">Creating a Draft</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-whats-the-recommended-setup" class="xref">What's the recommended setup?</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-where-can-i-get-a-template" class="xref">Where can I get a template?</a><a href="#section-toc.1-1.2.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-how-can-i-do-it-without-a-t" class="xref">How can I do it without a template?</a><a href="#section-toc.1-1.2.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.2.2.4">
-                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="xref">2.4</a>.  <a href="#name-how-do-i-use-the-rfc-elemen" class="xref">How do I use the <code>rfc</code> element to create an Internet-Draft?</a><a href="#section-toc.1-1.2.2.4.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.4">
+                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="xref">1.4</a>.  <a href="#name-where-can-i-get-more-inform" class="xref">Where can I get more information?</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-using-references" class="xref">Using References</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-how-do-i-put-in-a-reference" class="xref">How do I put in a reference?</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-creating-a-draft" class="xref">Creating a Draft</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
+                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-whats-the-recommended-setup" class="xref">What's the recommended setup?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-how-do-i-insert-the-full-re" class="xref">How do I insert the full reference?</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-where-can-i-get-a-template" class="xref">Where can I get a template?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-how-do-i-change-the-referen" class="xref">How do I change the reference tags from symbolic to numeric, i.e., from [RFC2119] to [1]?</a><a href="#section-toc.1-1.3.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.3">
+                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-how-can-i-do-it-without-a-t" class="xref">How can I do it without a template?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.4">
-                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-how-do-i-make-the-reference" class="xref">How do I make the reference tag [IKEv2] instead of [RFC4306]?</a><a href="#section-toc.1-1.3.2.4.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.4">
+                <p id="section-toc.1-1.2.2.4.1"><a href="#section-2.4" class="xref">2.4</a>.  <a href="#name-how-do-i-use-the-rfc-elemen" class="xref">How do I use the <code>rfc</code> element to create an Internet-Draft?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.5">
-                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-how-do-i-get-the-references" class="xref">How do I get the references listed in alphabetical order?</a><a href="#section-toc.1-1.3.2.5.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-how-do-i-reference-a-url" class="xref">How do I reference a URL?</a><a href="#section-toc.1-1.3.2.6.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-using-references" class="xref">Using References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-how-do-i-put-in-a-reference" class="xref">How do I put in a reference?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.7">
-                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="xref">3.7</a>.  <a href="#name-how-do-i-get-two-sections-o" class="xref">How do I get two sections of references: Normative and Informative References?</a><a href="#section-toc.1-1.3.2.7.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-how-do-i-insert-the-full-re" class="xref">How do I insert the full reference?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.8">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="xref">3.3</a>.  <a href="#name-how-do-i-change-the-referen" class="xref">How do I change the reference tags from symbolic to numeric, i.e., from [RFC2119] to [1]?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="xref">3.4</a>.  <a href="#name-how-do-i-make-the-reference" class="xref">How do I make the reference tag [IKEv2] instead of [RFC4306]?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="xref">3.5</a>.  <a href="#name-how-do-i-get-the-references" class="xref">How do I get the references listed in alphabetical order?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="xref">3.6</a>.  <a href="#name-how-do-i-reference-a-url" class="xref">How do I reference a URL?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
+                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="xref">3.7</a>.  <a href="#name-how-do-i-get-two-sections-o" class="xref">How do I get two sections of references: Normative and Informative References?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
                 <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="xref">3.8</a>.  <a href="#name-how-do-i-create-a-reference" class="xref">How do I create a reference to a BCP (or STD) that contains
- multiple RFCs?</a><a href="#section-toc.1-1.3.2.8.1" class="pilcrow">¶</a></p>
+ multiple RFCs?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.9">
-                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="xref">3.9</a>.  <a href="#name-how-do-i-make-a-cross-refer" class="xref">How do I make a cross-reference to another section?</a><a href="#section-toc.1-1.3.2.9.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.9">
+                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="xref">3.9</a>.  <a href="#name-how-do-i-make-a-cross-refer" class="xref">How do I make a cross-reference to another section?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.10">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.10">
                 <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="xref">3.10</a>. <a href="#name-what-about-referring-to-a-s" class="xref">What about referring to a section in another document?
- or How do I link to a section in another RFC?</a><a href="#section-toc.1-1.3.2.10.1" class="pilcrow">¶</a></p>
+ or How do I link to a section in another RFC?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.11">
-                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="xref">3.11</a>. <a href="#name-how-do-i-link-to-multiple-s" class="xref">How do I link to multiple sections within a document (e.g., 'see Sections 3 and 4')?</a><a href="#section-toc.1-1.3.2.11.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="xref">3.11</a>. <a href="#name-how-do-i-link-to-multiple-s" class="xref">How do I link to multiple sections within a document (e.g., 'see Sections 3 and 4')?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.3.2.12">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.12">
                 <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="xref">3.12</a>. <a href="#name-how-do-i-link-to-multiple-se" class="xref">How do I link to multiple sections in another document
- (e.g., 'see Sections 5 and 6 in RFC 3550')?</a><a href="#section-toc.1-1.3.2.12.1" class="pilcrow">¶</a></p>
+ (e.g., 'see Sections 5 and 6 in RFC 3550')?</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-using-lists" class="xref">Using Lists</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-how-do-i-get-different-kind" class="xref">How do I get different kinds of lists?</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-using-lists" class="xref">Using Lists</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-how-do-i-get-different-kind" class="xref">How do I get different kinds of lists?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-how-do-i-get-a-list-like-1-" class="xref">How do I get a list like (1), (2), (3) or (a), (b), (c)?</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-how-do-i-get-a-list-like-1-" class="xref">How do I get a list like (1), (2), (3) or (a), (b), (c)?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-how-do-i-get-continuous-num" class="xref">How do I get continuous numbering in a list that is split by
-text (or across sections)?</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+text (or across sections)?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-how-do-i-get-indentation-or" class="xref">How do I get indentation? or How do I use definition lists?</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-how-do-i-get-indentation-or" class="xref">How do I get indentation? or How do I use definition lists?</a></p>
 </li>
-            </ul>
-</li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-the-finer-points" class="xref">The Finer Points</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-what-is-cdata-for" class="xref">What is CDATA for?</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-what-are-the-entities-used-" class="xref">What are the entities used for special characters?</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-how-do-i-indicate-the-edito" class="xref">How do I indicate the editor of the document?</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-how-do-i-list-the-contribut" class="xref">How do I list the contributors or include acknowledgments?</a><a href="#section-toc.1-1.5.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="xref">5.5</a>.  <a href="#name-how-do-i-insert-questions-f" class="xref">How do I insert questions for my coauthors?</a><a href="#section-toc.1-1.5.2.5.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.5">
+                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-how-do-i-create-nested-list" class="xref">How do I create nested lists?</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-miscellaneous" class="xref">Miscellaneous</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-how-do-i-know-if-my-xml-is-" class="xref">How do I know if my XML is valid?</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-the-finer-points" class="xref">The Finer Points</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-what-is-cdata-for" class="xref">What is CDATA for?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-can-i-get-a-different-kind-" class="xref">Can I get a different kind of HTML output?</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-what-are-the-entities-used-" class="xref">What are the entities used for special characters?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-is-there-a-tool-that-will-t" class="xref">Is there a tool that will turn my text file into an XML file (i.e., id2xml)?</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-how-do-i-indicate-the-edito" class="xref">How do I indicate the editor of the document?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-how-do-i-list-the-contribut" class="xref">How do I list the contributors or include acknowledgments?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
+                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="xref">5.5</a>.  <a href="#name-how-do-i-insert-questions-f" class="xref">How do I insert questions for my coauthors?</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-new-with-v3" class="xref">New with v3</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.1">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-miscellaneous" class="xref">Miscellaneous</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-how-do-i-know-if-my-xml-is-" class="xref">How do I know if my XML is valid?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-can-i-get-a-different-kind-" class="xref">Can I get a different kind of HTML output?</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-is-there-a-tool-that-will-t" class="xref">Is there a tool that will turn my text file into an XML file (i.e., id2xml)?</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-new-with-v3" class="xref">New with v3</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-how-do-i-convert-my-xml-fil" class="xref">How do I convert my XML file from v2 to v3 so I can make
-      use of the new features?</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+      use of the new features?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
                 <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-after-converting-an-xml-fil" class="xref">After converting an XML file from v2 to v3, what further
-      updates might be needed for the v3 XML file?</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+      updates might be needed for the v3 XML file?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-how-do-i-fix-common-errors-" class="xref">How do I fix common errors after the upgrade from v2 to v3?</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
-<ul class="compact toc ulEmpty">
-<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3.2.1">
-                    <p id="section-toc.1-1.7.2.3.2.1.1"><a href="#section-7.3.1" class="xref">7.3.1</a>.  <a href="#name-kramdown-rfc2629" class="xref">kramdown-rfc2629</a><a href="#section-toc.1-1.7.2.3.2.1.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-how-do-i-fix-common-errors-" class="xref">How do I fix common errors after the upgrade from v2 to v3?</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.1">
+                    <p id="section-toc.1-1.7.2.3.2.1.1"><a href="#section-7.3.1" class="xref">7.3.1</a>.  <a href="#name-kramdown-rfc2629" class="xref">kramdown-rfc2629</a></p>
 </li>
-                  <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3.2.2">
-                    <p id="section-toc.1-1.7.2.3.2.2.1"><a href="#section-7.3.2" class="xref">7.3.2</a>.  <a href="#name-i-d-template" class="xref">i-d-template</a><a href="#section-toc.1-1.7.2.3.2.2.1" class="pilcrow">¶</a></p>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3.2.2">
+                    <p id="section-toc.1-1.7.2.3.2.2.1"><a href="#section-7.3.2" class="xref">7.3.2</a>.  <a href="#name-i-d-template" class="xref">i-d-template</a></p>
 </li>
                 </ul>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.4">
-                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-what-are-the-new-features-w" class="xref">What are the new features with v3?</a><a href="#section-toc.1-1.7.2.4.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
+                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-what-are-the-new-features-w" class="xref">What are the new features with v3?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.5">
-                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-how-do-i-insert-non-ascii-c" class="xref">How do I insert non-ASCII characters?</a><a href="#section-toc.1-1.7.2.5.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-how-do-i-insert-non-ascii-c" class="xref">How do I insert non-ASCII characters?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.6">
-                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-how-do-i-insert-a-table" class="xref">How do I insert a table?</a><a href="#section-toc.1-1.7.2.6.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.6">
+                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-how-do-i-insert-a-table" class="xref">How do I insert a table?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.7">
-                <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="xref">7.7</a>.  <a href="#name-how-do-i-generate-svg-that-" class="xref">How do I generate SVG that will be accepted in an RFC?</a><a href="#section-toc.1-1.7.2.7.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.7">
+                <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="xref">7.7</a>.  <a href="#name-how-do-i-generate-svg-that-" class="xref">How do I generate SVG that will be accepted in an RFC?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.8">
-                <p id="section-toc.1-1.7.2.8.1"><a href="#section-7.8" class="xref">7.8</a>.  <a href="#name-how-do-i-include-svg-in-my-" class="xref">How do I include SVG in my document?</a><a href="#section-toc.1-1.7.2.8.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.8">
+                <p id="section-toc.1-1.7.2.8.1"><a href="#section-7.8" class="xref">7.8</a>.  <a href="#name-how-do-i-include-svg-in-my-" class="xref">How do I include SVG in my document?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.9">
-                <p id="section-toc.1-1.7.2.9.1"><a href="#section-7.9" class="xref">7.9</a>.  <a href="#name-how-do-i-get-bold-italics-o" class="xref">How do I get bold, italics, or a fixed-width font?</a><a href="#section-toc.1-1.7.2.9.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.9">
+                <p id="section-toc.1-1.7.2.9.1"><a href="#section-7.9" class="xref">7.9</a>.  <a href="#name-how-do-i-get-bold-italics-o" class="xref">How do I get bold, italics, or a fixed-width font?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.10">
-                <p id="section-toc.1-1.7.2.10.1"><a href="#section-7.10" class="xref">7.10</a>. <a href="#name-how-do-i-get-subscript-and-" class="xref">How do I get subscript and superscript?</a><a href="#section-toc.1-1.7.2.10.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.10">
+                <p id="section-toc.1-1.7.2.10.1"><a href="#section-7.10" class="xref">7.10</a>. <a href="#name-how-do-i-get-subscript-and-" class="xref">How do I get subscript and superscript?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.11">
-                <p id="section-toc.1-1.7.2.11.1"><a href="#section-7.11" class="xref">7.11</a>. <a href="#name-what-are-the-preferred-valu" class="xref">What are the preferred values for the type of the &lt;sourcecode&gt; element?</a><a href="#section-toc.1-1.7.2.11.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.11">
+                <p id="section-toc.1-1.7.2.11.1"><a href="#section-7.11" class="xref">7.11</a>. <a href="#name-what-are-the-preferred-valu" class="xref">What are the preferred values for the type of the &lt;sourcecode&gt; element?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.12">
-                <p id="section-toc.1-1.7.2.12.1"><a href="#section-7.12" class="xref">7.12</a>. <a href="#name-how-should-a-yang-module-ap" class="xref">How should a YANG module appear?</a><a href="#section-toc.1-1.7.2.12.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.12">
+                <p id="section-toc.1-1.7.2.12.1"><a href="#section-7.12" class="xref">7.12</a>. <a href="#name-how-should-a-yang-module-ap" class="xref">How should a YANG module appear?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.13">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.13">
                 <p id="section-toc.1-1.7.2.13.1"><a href="#section-7.13" class="xref">7.13</a>. <a href="#name-do-i-have-to-use-the-bcp14-" class="xref">Do I have to use the bcp14 element each time a
- keyword (e.g., "MUST") appears in my document?</a><a href="#section-toc.1-1.7.2.13.1" class="pilcrow">¶</a></p>
+ keyword (e.g., "MUST") appears in my document?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.14">
-                <p id="section-toc.1-1.7.2.14.1"><a href="#section-7.14" class="xref">7.14</a>. <a href="#name-what-is-the-best-way-to-pri" class="xref">What is the best way to print a hard copy?</a><a href="#section-toc.1-1.7.2.14.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.14">
+                <p id="section-toc.1-1.7.2.14.1"><a href="#section-7.14" class="xref">7.14</a>. <a href="#name-what-is-the-best-way-to-pri" class="xref">What is the best way to print a hard copy?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.15">
-                <p id="section-toc.1-1.7.2.15.1"><a href="#section-7.15" class="xref">7.15</a>. <a href="#name-how-do-i-download-the-xml-s" class="xref">How do I download the XML source files for all RFCs?</a><a href="#section-toc.1-1.7.2.15.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.15">
+                <p id="section-toc.1-1.7.2.15.1"><a href="#section-7.15" class="xref">7.15</a>. <a href="#name-how-do-i-download-the-xml-s" class="xref">How do I download the XML source files for all RFCs?</a></p>
 </li>
-              <li class="compact toc ulEmpty" id="section-toc.1-1.7.2.16">
-                <p id="section-toc.1-1.7.2.16.1"><a href="#section-7.16" class="xref">7.16</a>. <a href="#name-what-has-been-deprecated-fr" class="xref">What has been deprecated from xml2rfc v2?</a><a href="#section-toc.1-1.7.2.16.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.16">
+                <p id="section-toc.1-1.7.2.16.1"><a href="#section-7.16" class="xref">7.16</a>. <a href="#name-what-has-been-deprecated-fr" class="xref">What has been deprecated from xml2rfc v2?</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-appendix.b" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a></p>
 </li>
         </ul>
 </nav>
@@ -1437,10 +1457,9 @@ text (or across sections)?</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow"
         </h3>
 <p id="section-1.1-1">
 xml2rfc is a tool that lets you convert an XML source file into a text, HTML,
-PDF, expanded XML file, or various other options.  It is available from <span><a href="#xml2rfc" class="xref">https://xml2rfc.tools.ietf.org</a> [<a href="#xml2rfc" class="xref">xml2rfc</a>]</span> as
-a web-based service or for download. Version 3 of the tool adds new
-features and is used by the RFC Editor to create RFCs. The
-current version is here: <span><a href="https://pypi.org/project/xml2rfc/">https://pypi.org/project/xml2rfc/</a></span>.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
+PDF, expanded XML file, or various other options.  It is available as
+a web-based service (<span><a href="https://author-tools.ietf.org/">https://author-tools.ietf.org/</a></span>) or for download (<span><a href="https://pypi.org/project/xml2rfc/">https://pypi.org/project/xml2rfc/</a></span>. Version 3 of the tool adds new
+features and is used by the RFC Editor to create RFCs.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
 </section>
 <section id="section-1.2">
         <h3 id="name-why-should-i-use-xml2rfc">
@@ -1469,22 +1488,20 @@ more details.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 <a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-where-can-i-get-more-inform" class="section-name selfRef">Where can I get more information?</a>
         </h3>
 <ul class="normal">
-<li class="normal" id="section-1.4-1.1">Web service to convert a file: <span><a href="https://xml2rfc.tools.ietf.org/experimental.html">https://xml2rfc.tools.ietf.org/experimental.html</a></span><a href="#section-1.4-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-1.4-1.1">Web service to convert a file: <span><a href="https://author-tools.ietf.org">https://author-tools.ietf.org</a></span> (Previously: <span><a href="https://xml2rfc.tools.ietf.org/experimental.html">https://xml2rfc.tools.ietf.org/experimental.html</a></span>)<a href="#section-1.4-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.4-1.2">Introduction to xml2rfc v3: <span><a href="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html">https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html</a></span><a href="#section-1.4-1.2" class="pilcrow">¶</a>
-</li>
-          <li class="normal" id="section-1.4-1.3">
+          <li class="normal" id="section-1.4-1.2">
      The v3 vocabulary: See <a href="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html">"Xml2rfc
      Vocabulary Version 3 Schema"</a>.
-     (Earlier documentation is in <span>[<a href="#RFC7991" class="xref">RFC7991</a>]</span> and <span>[<a href="#I-D.levkowetz-xml2rfc-v3-implementation-notes" class="xref">I-D.levkowetz-xml2rfc-v3-implementation-notes</a>]</span>.)<a href="#section-1.4-1.3" class="pilcrow">¶</a>
+     (Earlier documentation is in <span>[<a href="#RFC7991" class="xref">RFC7991</a>]</span> and <span>[<a href="#I-D.levkowetz-xml2rfc-v3-implementation-notes" class="xref">I-D.levkowetz-xml2rfc-v3-implementation-notes</a>]</span>.)<a href="#section-1.4-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.4-1.4">The schema in RelaxNG: <a href="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</a>
-   (which includes the schema of the SVG profile: <a href="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</a>).<a href="#section-1.4-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.4-1.3">The schema in RelaxNG: <a href="https://svn.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</a>
+   (which includes the schema of the SVG profile: <a href="https://svn.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</a>).<a href="#section-1.4-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.4-1.5">
-     xml2rfc mailing list: <span><a href="https://www.ietf.org/mailman/listinfo/xml2rfc">https://www.ietf.org/mailman/listinfo/xml2rfc</a></span><a href="#section-1.4-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.4-1.4">
+     xml2rfc mailing list: <span><a href="https://www.ietf.org/mailman/listinfo/xml2rfc">https://www.ietf.org/mailman/listinfo/xml2rfc</a></span><a href="#section-1.4-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.4-1.6">Report a bug in xml2rfc: <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1">https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1</a></span><a href="#section-1.4-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.4-1.5">Report a bug in xml2rfc: <span><a href="https://trac.ietf.org/tools/xml2rfc/trac/report/1">https://trac.ietf.org/tools/xml2rfc/trac/report/1</a></span><a href="#section-1.4-1.5" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1502,7 +1519,7 @@ more details.<a href="#section-1.3-1" class="pilcrow">¶</a></p>
 You have several choices when getting started with xml2rfc, such as:<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2.1-2.1">
-Use the tool on the web (<span><a href="https://xml2rfc.tools.ietf.org/experimental.html">https://xml2rfc.tools.ietf.org/experimental.html</a></span>) or install it locally (<span><a href="https://pypi.org/project/xml2rfc">https://pypi.org/project/xml2rfc</a></span>).<a href="#section-2.1-2.1" class="pilcrow">¶</a>
+Use the tool on the web (<span><a href="https://author-tools.ietf.org">https://author-tools.ietf.org</a></span> via UI or API) or install it locally (<span><a href="https://pypi.org/project/xml2rfc">https://pypi.org/project/xml2rfc</a></span>).<a href="#section-2.1-2.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-2.1-2.2">
 Use the citation libraries online or maintain a local copy.<a href="#section-2.1-2.2" class="pilcrow">¶</a>
@@ -1579,7 +1596,7 @@ the header, followed by "(if approved)".<a href="#section-2.4-5" class="pilcrow"
 <p id="section-2.4-6">
 For example, putting it together:<a href="#section-2.4-6" class="pilcrow">¶</a></p>
 <div id="section-2.4-7">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;rfc
    xmlns:xi="http://www.w3.org/2001/XInclude"
    category="info"
@@ -1620,7 +1637,7 @@ others.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
 To make use of the citation libraries, use an xi:include in the references
 section as follows.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <div id="section-3.1-3">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"/&gt;
 </pre><a href="#section-3.1-3" class="pilcrow">¶</a>
@@ -1629,7 +1646,7 @@ section as follows.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 
 For an Internet-Draft, the citation filename uses the draft string. For example:<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <div id="section-3.1-5">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;xi:include
     href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-wgname-topic.xml"/&gt;
 </pre><a href="#section-3.1-5" class="pilcrow">¶</a>
@@ -1639,7 +1656,7 @@ another option is to include the complete reference element (see
 <a href="#q_full_ref" class="xref">Section 3.2</a>). Here's a template of a
 reference element:<a href="#section-3.1-6" class="pilcrow">¶</a></p>
 <div id="section-3.1-7">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
     &lt;reference anchor="" target=""&gt;
         &lt;front&gt;
             &lt;title&gt;&lt;/title&gt;
@@ -1702,7 +1719,7 @@ of symbolic, e.g., [RFC2119].<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 Use the <code>displayreference</code> element and set the <code>to</code> attribute to
 the nickname. Tip: place it before the first <code>references</code> element. For example:<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <div id="section-3.4-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;displayreference target="RFC7296" to="IKEv2"/&gt;
 &lt;references&gt;
 [...]
@@ -1734,14 +1751,14 @@ In the rfc element, set the attribute <code>sortRefs="yes"</code>.  Note that so
 <p id="section-3.6-1">
 The eref element for an external reference creates a link in the HTML output.  For example:<a href="#section-3.6-1" class="pilcrow">¶</a></p>
 <div id="section-3.6-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;eref target="https://www.w3.org"&gt;
 </pre><a href="#section-3.6-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.6-3">
 yields <span><a href="https://www.w3.org">https://www.w3.org</a></span>.<a href="#section-3.6-3" class="pilcrow">¶</a></p>
 <div id="section-3.6-4">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;eref target="https://www.w3.org"&gt;W3C Home Page&lt;/eref&gt;
 </pre><a href="#section-3.6-4" class="pilcrow">¶</a>
 </div>
@@ -1750,7 +1767,7 @@ yields <span><a href="https://www.w3.org">https://www.w3.org</a></span>.<a href=
 <p id="section-3.6-6">
 Another option is using xref and creating a reference that uses the target attribute for the URL. For example:<a href="#section-3.6-6" class="pilcrow">¶</a></p>
 <div id="section-3.6-7">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
     &lt;reference anchor="W3C" target="https://www.w3.org/"&gt;
         &lt;front&gt;
             &lt;title&gt;World Wide Web Consortium (W3C)&lt;/title&gt;
@@ -1761,7 +1778,7 @@ Another option is using xref and creating a reference that uses the target attri
 </div>
 <p id="section-3.6-8">
 yields<a href="#section-3.6-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-3.6-9">
+<div class="alignLeft art-text artwork" id="section-3.6-9">
 <pre>
 [W3C]     "World Wide Web Consortium (W3C)", &lt;https://www.w3.org/&gt;.
 </pre><a href="#section-3.6-9" class="pilcrow">¶</a>
@@ -1775,7 +1792,7 @@ yields<a href="#section-3.6-8" class="pilcrow">¶</a></p>
 <p id="section-3.7-1">
 Use the name element (child of the references element) as follows:<a href="#section-3.7-1" class="pilcrow">¶</a></p>
 <div id="section-3.7-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
     &lt;back&gt;
       &lt;references&gt;
         &lt;name&gt;Normative References&lt;/name&gt;
@@ -1797,7 +1814,7 @@ Use the name element (child of the references element) as follows:<a href="#sect
 <p id="section-3.8-1">
 Use &lt;referencegroup&gt; with an xi:include for each RFC inside of it:<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 <div id="section-3.8-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;referencegroup anchor="STD78" target="https://www.rfc-editor.org/info/std78"&gt;
   &lt;xi:include
    href="https://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5343.xml"/&gt;
@@ -1811,7 +1828,7 @@ Use &lt;referencegroup&gt; with an xi:include for each RFC inside of it:<a href=
 </pre><a href="#section-3.8-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.8-3">which yields<a href="#section-3.8-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-3.8-4">
+<div class="alignLeft art-text artwork" id="section-3.8-4">
 <pre>
   [STD78]    Schoenwaelder, J., "Simple Network Management Protocol
              (SNMP) Context EngineID Discovery", STD 78, RFC 5343,
@@ -1841,14 +1858,14 @@ Use &lt;referencegroup&gt; with an xi:include for each RFC inside of it:<a href=
 Make sure the section you want to reference has an anchor attribute.
 For example:<a href="#section-3.9-1" class="pilcrow">¶</a></p>
 <div id="section-3.9-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
    &lt;section anchor="s_using_lists"&gt;
 </pre><a href="#section-3.9-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.9-3">
 Then, refer to it with an &lt;xref&gt; element:<a href="#section-3.9-3" class="pilcrow">¶</a></p>
 <div id="section-3.9-4">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
   See &lt;xref target="s_using_lists" /&gt;.
 </pre><a href="#section-3.9-4" class="pilcrow">¶</a>
 </div>
@@ -1915,7 +1932,7 @@ Use &lt;xref&gt; and set the sectionFormat attribute to various options.<a href=
 Use &lt;xref&gt; with the format attribute.  For example, assuming the anchors
 for the relevant sections match the targets:<a href="#section-3.11-1" class="pilcrow">¶</a></p>
 <div id="section-3.11-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 See Sections &lt;xref target="s_using_refs" format="counter" /&gt; and
 &lt;xref target="s_using_lists" format="counter" /&gt;.
 </pre><a href="#section-3.11-2" class="pilcrow">¶</a>
@@ -1930,7 +1947,7 @@ See Sections <a href="#s_using_refs" class="xref">3</a> and
 Note: The format attribute can have the value "title", which displays the title of the
 section.  For example,<a href="#section-3.11-5" class="pilcrow">¶</a></p>
 <div id="section-3.11-6">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 See Sections &lt;xref target="s_using_refs" format="title" /&gt; and
 &lt;xref target="s_using_lists" format="title" /&gt;.
 </pre><a href="#section-3.11-6" class="pilcrow">¶</a>
@@ -1948,7 +1965,7 @@ See <a href="#s_using_refs" class="xref">Using References</a> and <a href="#s_us
         </h3>
 <p id="section-3.12-1">Use &lt;xref&gt; with sectionFormat="bare". For example:<a href="#section-3.12-1" class="pilcrow">¶</a></p>
 <div id="section-3.12-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 See Sections &lt;xref target="RFC3550" section="5" sectionFormat="bare" /&gt; and
 &lt;xref target="RFC3550" section="6" sectionFormat="bare" /&gt; in
 &lt;xref target="RFC3550"/&gt;.
@@ -1987,23 +2004,23 @@ and <a href="https://www.rfc-editor.org/rfc/rfc3550#section-6" class="relref">6<
      element; examples below.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <p id="section-4.1-5">
 For full details, see <span><a href="https://www.rfc-editor.org/rfc/rfc7991#section-2.34.5" class="relref">Section 2.34.5</a> of [<a href="#RFC7991" class="xref">RFC7991</a>]</span> and the <a href="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html#name-type-attribute-5">schema documentation</a>.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
-<ul class="ulEmpty normal">
-<li class="ulEmpty normal" id="section-4.1-6.1">
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-4.1-6.1">
     type="1" --&gt; 1, 2, 3, ...<a href="#section-4.1-6.1" class="pilcrow">¶</a>
 </li>
-          <li class="ulEmpty normal" id="section-4.1-6.2">
+          <li class="normal ulEmpty" id="section-4.1-6.2">
     type="I" --&gt; I, II, III, ...<a href="#section-4.1-6.2" class="pilcrow">¶</a>
 </li>
-          <li class="ulEmpty normal" id="section-4.1-6.3">
+          <li class="normal ulEmpty" id="section-4.1-6.3">
     type="i" --&gt; i, ii, iii, ...<a href="#section-4.1-6.3" class="pilcrow">¶</a>
 </li>
-          <li class="ulEmpty normal" id="section-4.1-6.4">
+          <li class="normal ulEmpty" id="section-4.1-6.4">
     type="a" --&gt; a, b, c, ...<a href="#section-4.1-6.4" class="pilcrow">¶</a>
 </li>
-          <li class="ulEmpty normal" id="section-4.1-6.5">
+          <li class="normal ulEmpty" id="section-4.1-6.5">
     type="A" --&gt; A, B, C, ...<a href="#section-4.1-6.5" class="pilcrow">¶</a>
 </li>
-          <li class="ulEmpty normal" id="section-4.1-6.6">
+          <li class="normal ulEmpty" id="section-4.1-6.6">
     type="REQ%d:" --&gt; [See <a href="#q_fancy_lists" class="xref">Section 4.2</a>.]<a href="#section-4.1-6.6" class="pilcrow">¶</a>
 </li>
         </ul>
@@ -2013,7 +2030,7 @@ For full details, see <span><a href="https://www.rfc-editor.org/rfc/rfc7991#sect
         <h3 id="name-how-do-i-get-a-list-like-1-">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-how-do-i-get-a-list-like-1-" class="section-name selfRef">How do I get a list like (1), (2), (3) or (a), (b), (c)?</a>
         </h3>
-<div class="artwork art-text alignLeft" id="section-4.2-1">
+<div class="alignLeft art-text artwork" id="section-4.2-1">
 <pre>
 (1)
 (2)    is   &lt;ol type="(%d)"&gt;
@@ -2039,7 +2056,7 @@ text (or across sections)?</a>
 <p id="section-4.3-1">
 Set the group attribute to the same value for each &lt;ol&gt; element. For example:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <div id="section-4.3-2">
-<pre class="sourcecode lang-xml"> &lt;ol type="REQ%d:" group="reqs"&gt;
+<pre class="lang-xml sourcecode"> &lt;ol type="REQ%d:" group="reqs"&gt;
   &lt;li&gt;do a&lt;/li&gt;
   &lt;li&gt;do b&lt;/li&gt;
 &lt;/ol&gt;
@@ -2101,7 +2118,7 @@ has a corresponding &lt;dd&gt; (description).<a href="#section-4.4-1" class="pil
 <p id="section-4.4-2">
 For example:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <div id="section-4.4-3">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;dl&gt;
   &lt;dt&gt;Unassigned:&lt;/dt&gt;
   &lt;dd&gt;Unused and available for assignment via
@@ -2135,7 +2152,7 @@ For example:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 Use <code>newline="true"</code> to get a line
 break after the term. For example:<a href="#section-4.4-7" class="pilcrow">¶</a></p>
 <div id="section-4.4-8">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;dl newline="true"&gt;
   &lt;dt&gt;Unassigned:&lt;/dt&gt;
   &lt;dd&gt;Unused and available for assignment via
@@ -2166,6 +2183,80 @@ break after the term. For example:<a href="#section-4.4-7" class="pilcrow">¶</a
 </dl>
 </section>
 </div>
+<div id="q_nested_lists">
+<section id="section-4.5">
+        <h3 id="name-how-do-i-create-nested-list">
+<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-how-do-i-create-nested-list" class="section-name selfRef">How do I create nested lists?</a>
+        </h3>
+<p id="section-4.5-1">The key is that any text before or after the inner list must be in a &lt;t&gt; element.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-2">Example: &lt;ol&gt; nested within &lt;dl&gt;<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<div id="section-4.5-3">
+<pre class="lang-xml sourcecode">
+&lt;dl&gt;
+[...]
+ &lt;dt&gt;Foo validator:&lt;/dt&gt;
+ &lt;dd&gt;
+    &lt;t&gt;It performs the following actions:&lt;/t&gt;
+    &lt;ol type="1" spacing="compact"&gt;
+      &lt;li&gt;runs&lt;/li&gt;
+      &lt;li&gt;jumps&lt;/li&gt;
+      &lt;li&gt;walks&lt;/li&gt;
+    &lt;/ol&gt;
+ &lt;/dd&gt;
+[...]
+&lt;/dl&gt;
+</pre><a href="#section-4.5-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4.5-4">yields:<a href="#section-4.5-4" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.5-5">
+          <dt id="section-4.5-5.1">Foo validator:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.5-5.2">
+            <p id="section-4.5-5.2.1">It performs the following actions:<a href="#section-4.5-5.2.1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="compact type-1" id="section-4.5-5.2.2">
+      <li id="section-4.5-5.2.2.1">runs<a href="#section-4.5-5.2.2.1" class="pilcrow">¶</a>
+</li>
+              <li id="section-4.5-5.2.2.2">jumps<a href="#section-4.5-5.2.2.2" class="pilcrow">¶</a>
+</li>
+              <li id="section-4.5-5.2.2.3">walks<a href="#section-4.5-5.2.2.3" class="pilcrow">¶</a>
+</li>
+            </ol>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-4.5-6">Example: &lt;ul&gt; nested within &lt;ol&gt;<a href="#section-4.5-6" class="pilcrow">¶</a></p>
+<div id="section-4.5-7">
+<pre class="sourcecode">
+&lt;ol type="Step %d:"&gt;
+[...]
+ &lt;li&gt;&lt;t&gt;Send it to&lt;/t&gt;
+    &lt;ul spacing="compact"&gt;
+      &lt;li&gt;Alice&lt;/li&gt;
+      &lt;li&gt;Bob&lt;/li&gt;
+      &lt;li&gt;Carol&lt;/li&gt;
+    &lt;/ul&gt;
+ &lt;/li&gt;
+[...]
+&lt;/ol&gt;
+</pre><a href="#section-4.5-7" class="pilcrow">¶</a>
+</div>
+<p id="section-4.5-8">yields:<a href="#section-4.5-8" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="olPercent" id="section-4.5-9">
+  <dt>Step 1:</dt>
+<dd id="section-4.5-9.1">
+            <p id="section-4.5-9.1.1">Send it to:<a href="#section-4.5-9.1.1" class="pilcrow">¶</a></p>
+<ul class="compact">
+<li class="compact" id="section-4.5-9.1.2.1">Alice<a href="#section-4.5-9.1.2.1" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-4.5-9.1.2.2">Bob<a href="#section-4.5-9.1.2.2" class="pilcrow">¶</a>
+</li>
+              <li class="compact" id="section-4.5-9.1.2.3">Carol<a href="#section-4.5-9.1.2.3" class="pilcrow">¶</a>
+</li>
+            </ul>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
 </section>
 </div>
 <section id="section-5">
@@ -2189,19 +2280,16 @@ examples in the document.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-what-are-the-entities-used-" class="section-name selfRef">What are the entities used for special characters?</a>
         </h3>
 <p id="section-5.2-1">To prevent these characters from being parsed as XML, use<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.2-2">
+<div class="alignLeft art-text artwork" id="section-5.2-2">
 <pre>
 &amp;amp; for &amp;
 &amp;lt; for &lt;
 &amp;gt; for &gt;
 </pre><a href="#section-5.2-2" class="pilcrow">¶</a>
 </div>
-<p id="section-5.2-3">
-In addition, the following entities are defined:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.2-4">
+<p id="section-5.2-3">In addition, the following entities are defined:<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-5.2-4">
 <pre>
-&amp;apos; for '
-&amp;quot; for "
 &amp;nbsp; for non-breaking space
 &amp;nbhy; for non-breaking hyphen
 &amp;wj; for word joiner
@@ -2212,10 +2300,9 @@ In addition, the following entities are defined:<a href="#section-5.2-3" class="
         <h3 id="name-how-do-i-indicate-the-edito">
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-how-do-i-indicate-the-edito" class="section-name selfRef">How do I indicate the editor of the document?</a>
         </h3>
-<p id="section-5.3-1">
-Use the role attribute of the author element. For example:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">Use the role attribute of the author element. For example:<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <div id="section-5.3-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;author initials="J" surname="Doe" fullname="John Doe" role="editor"&gt;
 </pre><a href="#section-5.3-2" class="pilcrow">¶</a>
 </div>
@@ -2242,7 +2329,7 @@ Use the role attribute of the author element. For example:<a href="#section-5.3-
 <p id="section-5.5-2">
    Example of using comments:<a href="#section-5.5-2" class="pilcrow">¶</a></p>
 <div id="section-5.5-3">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;!-- [JD] This point needs revision.--&gt;
 </pre><a href="#section-5.5-3" class="pilcrow">¶</a>
 </div>
@@ -2252,7 +2339,7 @@ Use the role attribute of the author element. For example:<a href="#section-5.3-
 <p id="section-5.5-5">
 Example of using &lt;cref&gt;:<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <div id="section-5.5-6">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;cref anchor="Q1" source="JD"&gt;This point needs revision.&lt;/cref&gt;
 </pre><a href="#section-5.5-6" class="pilcrow">¶</a>
 </div>
@@ -2420,7 +2507,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <a href
           docName="draft-foo-bar-02"."
             </dt>
             <dd style="margin-left: 1.5em" id="section-7.3.2-2.2">
-          This issue is tracked in <span><a href="https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439">https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439</a></span>.
+          This issue is tracked in <span><a href="https://trac.ietf.org/tools/xml2rfc/trac/ticket/439">https://trac.ietf.org/tools/xml2rfc/trac/ticket/439</a></span>.
           You can't modify your source to avoid it.<a href="#section-7.3.2-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -2552,7 +2639,7 @@ when a <code>surname</code> contains <span class="unicode">"ä" (LATIN SMALL LET
         </h3>
 <p id="section-7.6-1">For example:<a href="#section-7.6-1" class="pilcrow">¶</a></p>
 <div id="section-7.6-2">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;table anchor="table_ex"&gt;
   &lt;name&gt;IETF Meetings in 2005&lt;/name&gt;
   &lt;thead&gt;
@@ -2672,7 +2759,7 @@ files</a>.<a href="#section-7.7-2" class="pilcrow">¶</a></p>
 <p id="section-7.8-3">For any given SVG artwork, you can provide an ASCII art equivalent (for use
 in the text output) by using the &lt;artset&gt; element. For example:<a href="#section-7.8-3" class="pilcrow">¶</a></p>
 <div id="section-7.8-4">
-<pre class="sourcecode lang-xml">
+<pre class="lang-xml sourcecode">
 &lt;figure&gt;
   &lt;name&gt;TCP Header Format&lt;/name&gt;
   &lt;artset&gt;
@@ -2688,7 +2775,7 @@ in the text output) by using the &lt;artset&gt; element. For example:<a href="#s
 <p id="section-7.8-5">which yields:<a href="#section-7.8-5" class="pilcrow">¶</a></p>
 <span id="name-tcp-header-format"></span><figure id="figure-1">
           <div id="section-7.8-6.1">
-            <div class="artwork art-svg alignLeft" id="section-7.8-6.1.1">
+            <div class="alignLeft art-svg artwork" id="section-7.8-6.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" preserveAspectRatio="xMidYMid meet" version="1.2" viewBox="0 0 700.6 278.1">
                 <desc>TCP Header</desc>
                 <defs>
@@ -3171,15 +3258,15 @@ for bulk download from <span><a href="https://www.rfc-editor.org/retrieve/bulk">
 <dd class="break"></dd>
 <dt id="I-D.levkowetz-xml2rfc-v3-implementation-notes">[I-D.levkowetz-xml2rfc-v3-implementation-notes]</dt>
       <dd>
-<span class="refAuthor">Levkowetz, H.</span>, <span class="refTitle">"Implementation notes for RFC7991,"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-levkowetz-xml2rfc-v3-implementation-notes-12</span>, <time datetime="2020-12-15" class="refDate">15 December 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-12">https://tools.ietf.org/html/draft-levkowetz-xml2rfc-v3-implementation-notes-12</a>&gt;</span>. </dd>
+<span class="refAuthor">Levkowetz, H.</span>, <span class="refTitle">"Implementation notes for RFC7991,"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-levkowetz-xml2rfc-v3-implementation-notes-13</span>, <time datetime="2021-09-16" class="refDate">16 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-levkowetz-xml2rfc-v3-implementation-notes-13">https://datatracker.ietf.org/doc/html/draft-levkowetz-xml2rfc-v3-implementation-notes-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7296">[IKEv2]</dt>
       <dd>
-<span class="refAuthor">Kaufman, C.</span><span class="refAuthor">, Hoffman, P.</span><span class="refAuthor">, Nir, Y.</span><span class="refAuthor">, Eronen, P.</span><span class="refAuthor">, and T. Kivinen</span>, <span class="refTitle">"Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="seriesInfo">STD 79</span>, <span class="seriesInfo">RFC 7296</span>, <span class="seriesInfo">DOI 10.17487/RFC7296</span>, <time datetime="2014-10" class="refDate">October 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7296">https://www.rfc-editor.org/info/rfc7296</a>&gt;</span>. </dd>
+<span class="refAuthor">Kaufman, C.</span>, <span class="refAuthor">Hoffman, P.</span>, <span class="refAuthor">Nir, Y.</span>, <span class="refAuthor">Eronen, P.</span>, and <span class="refAuthor">T. Kivinen</span>, <span class="refTitle">"Internet Key Exchange Protocol Version 2 (IKEv2)"</span>, <span class="seriesInfo">STD 79</span>, <span class="seriesInfo">RFC 7296</span>, <span class="seriesInfo">DOI 10.17487/RFC7296</span>, <time datetime="2014-10" class="refDate">October 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7296">https://www.rfc-editor.org/info/rfc7296</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3550">[RFC3550]</dt>
       <dd>
-<span class="refAuthor">Schulzrinne, H.</span><span class="refAuthor">, Casner, S.</span><span class="refAuthor">, Frederick, R.</span><span class="refAuthor">, and V. Jacobson</span>, <span class="refTitle">"RTP: A Transport Protocol for Real-Time Applications"</span>, <span class="seriesInfo">STD 64</span>, <span class="seriesInfo">RFC 3550</span>, <span class="seriesInfo">DOI 10.17487/RFC3550</span>, <time datetime="2003-07" class="refDate">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3550">https://www.rfc-editor.org/info/rfc3550</a>&gt;</span>. </dd>
+<span class="refAuthor">Schulzrinne, H.</span>, <span class="refAuthor">Casner, S.</span>, <span class="refAuthor">Frederick, R.</span>, and <span class="refAuthor">V. Jacobson</span>, <span class="refTitle">"RTP: A Transport Protocol for Real-Time Applications"</span>, <span class="seriesInfo">STD 64</span>, <span class="seriesInfo">RFC 3550</span>, <span class="seriesInfo">DOI 10.17487/RFC3550</span>, <time datetime="2003-07" class="refDate">July 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3550">https://www.rfc-editor.org/info/rfc3550</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7991">[RFC7991]</dt>
       <dd>
@@ -3203,20 +3290,20 @@ for bulk download from <span><a href="https://www.rfc-editor.org/retrieve/bulk">
 <dd class="break"></dd>
 <dt id="xml2rfc">[xml2rfc]</dt>
     <dd>
-<span class="refTitle">"xml2rfc"</span>, <span>&lt;<a href="https://xml2rfc.ietf.org/">https://xml2rfc.ietf.org/</a>&gt;</span>. </dd>
+<span class="refTitle">"xml2rfc"</span>, <span>&lt;<a href="https://author-tools.ietf.org/">https://author-tools.ietf.org/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
-<section id="section-appendix.a">
+<section id="appendix-A">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="section-appendix.a-1">
+<p id="appendix-A-1">
 This FAQ was made possible by the tools, documentation, and test files
-created by <span class="contact-name">Henrik Levkowetz</span>, <span class="contact-name">Julian Reschke</span>, <span class="contact-name">Paul Hoffman</span>, and <span class="contact-name">Sandy Ginoza</span>. Also, thanks to <span class="contact-name">Jeffrey Yaskin</span> for contributing.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
+created by <span class="contact-name">Henrik Levkowetz</span>, <span class="contact-name">Julian Reschke</span>, <span class="contact-name">Paul Hoffman</span>, and <span class="contact-name">Sandy Ginoza</span>. Also, thanks to <span class="contact-name">Jeffrey Yaskin</span> for contributing.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 <div id="authors-addresses">
-<section id="section-appendix.b">
+<section id="appendix-B">
       <h2 id="name-authors-address">
 <a href="#name-authors-address" class="section-name selfRef">Author's Address</a>
       </h2>

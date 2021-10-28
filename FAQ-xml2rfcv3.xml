@@ -1,13 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE rfc SYSTEM "rfc2629-xhtml.ent" [
-<!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!DOCTYPE rfc [
+  <!ENTITY nbsp    "&#160;">
+  <!ENTITY zwsp   "&#8203;">
+  <!ENTITY nbhy   "&#8209;">
+  <!ENTITY wj     "&#8288;">
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-     docName="FAQ-xml2rfcv3-12" submissionType="IETF" category="info" xml:lang="en" version="3"
+    docName="FAQ-xml2rfcv3-14" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
-  <!-- intended for the HTML output to be read, not the text output -->
+
+  <!-- It is intended for the HTML output to be read, not the text output. -->
 
   <front>
     <title abbrev="xml2rfc FAQ">xml2rfc Frequently Asked Questions</title>
@@ -26,7 +30,7 @@
       <t><strong>This FAQ is for version 3 of xml2rfc; the vocabulary has been
       changed significantly from version 2.</strong> For guidance on version
       2, please see the <eref
-      target="https://xml2rfc.tools.ietf.org/xml2rfcFAQ.html">FAQ for xml2rfc
+      target="https://xml2rfc.tools.org/xml2rfcFAQ.html">FAQ for xml2rfc
       v2</eref>.
       </t>
     </abstract>
@@ -48,10 +52,9 @@
         <name>What is xml2rfc?</name>
         <t>
 xml2rfc is a tool that lets you convert an XML source file into a text, HTML,
-PDF, expanded XML file, or various other options.  It is available from <xref target="xml2rfc" format="default">https://xml2rfc.tools.ietf.org</xref> as
-a web-based service or for download. Version 3 of the tool adds new
-features and is used by the RFC Editor to create RFCs. The
-current version is here: <eref target="https://pypi.org/project/xml2rfc/"/>.
+PDF, expanded XML file, or various other options.  It is available as
+a web-based service (<eref target="https://author-tools.ietf.org/"/>) or for download (<eref target="https://pypi.org/project/xml2rfc/"/>. Version 3 of the tool adds new
+features and is used by the RFC Editor to create RFCs. 
 </t>
       </section>
       <section numbered="true" toc="default">
@@ -77,8 +80,9 @@ more details.
       <section numbered="true" toc="default">
         <name>Where can I get more information?</name>
 	<ul>
-          <li>Web service to convert a file: <eref target="https://xml2rfc.tools.ietf.org/experimental.html"/></li>
-	  <li>Introduction to xml2rfc v3: <eref target="https://tools.ietf.org/src/xml2rfc/trunk/cli/doc/xml2rfc3.html"/></li>
+          <li>Web service to convert a file: <eref                              
+target="https://author-tools.ietf.org"/> (Previously: <eref target="https://xml2rfc.tools.ietf.org/experimental.html"/>)</li>
+
           <li>
 	    The v3 vocabulary: See <eref
 	    target="https://xml2rfc.tools.ietf.org/xml2rfc-doc.html">"Xml2rfc
@@ -87,13 +91,13 @@ more details.
 	    target="I-D.levkowetz-xml2rfc-v3-implementation-notes"/>.)
           </li>
           <li>The schema in RelaxNG: <eref
-	    target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</eref>
-	  (which includes the schema of the SVG profile: <eref target="https://svn.tools.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</eref>).</li>
+	    target="https://svn.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/v3.rnc">v3.rnc</eref>
+	  (which includes the schema of the SVG profile: <eref target="https://svn.ietf.org/svn/tools/xml2rfc/trunk/cli/xml2rfc/data/SVG-1.2-RFC.rnc">SVG-1.2-RFC.rnc</eref>).</li>
           <li>
 	    xml2rfc mailing list: <eref target="https://www.ietf.org/mailman/listinfo/xml2rfc"/>
           </li>
 	  <li>Report a bug in xml2rfc: <eref
-	  target="https://trac.tools.ietf.org/tools/xml2rfc/trac/report/1"/></li>
+	  target="https://trac.ietf.org/tools/xml2rfc/trac/report/1"/></li>
         </ul>
       </section>
     </section>
@@ -108,7 +112,7 @@ You have several choices when getting started with xml2rfc, such as:
 </t>
         <ul spacing="normal">
           <li>
-Use the tool on the web (<eref target="https://xml2rfc.tools.ietf.org/experimental.html"/>) or install it locally (<eref target="https://pypi.org/project/xml2rfc"/>).
+Use the tool on the web (<eref target="https://author-tools.ietf.org"/> via UI or API) or install it locally (<eref target="https://pypi.org/project/xml2rfc"/>).
 </li>
           <li>
 Use the citation libraries online or maintain a local copy.
@@ -755,6 +759,72 @@ break after the term. For example:</t>
 </dl>
 
       </section>
+
+      <section anchor="q_nested_lists" numbered="true" toc="default">
+        <name>How do I create nested lists?</name>
+        <t>The key is that any text before or after the inner list must be in a &lt;t&gt; element.</t>
+
+<t>Example: &lt;ol&gt; nested within &lt;dl&gt;</t>
+
+<sourcecode type="xml"><![CDATA[
+<dl>
+[...]
+ <dt>Foo validator:</dt>
+ <dd>
+    <t>It performs the following actions:</t>
+    <ol type="1" spacing="compact">
+      <li>runs</li>
+      <li>jumps</li>
+      <li>walks</li>
+    </ol>
+ </dd>
+[...]
+</dl>
+]]></sourcecode>
+
+<t>yields:</t>
+<dl>
+ <dt>Foo validator:</dt>
+ <dd>
+    <t>It performs the following actions:</t>
+    <ol type="1" spacing="compact">
+      <li>runs</li>
+      <li>jumps</li>
+      <li>walks</li>
+    </ol>
+ </dd>
+</dl>
+
+<t>Example: &lt;ul&gt; nested within &lt;ol&gt;</t>
+
+<sourcecode><![CDATA[
+<ol type="Step %d:">
+[...]
+ <li><t>Send it to</t>
+    <ul spacing="compact">
+      <li>Alice</li>
+      <li>Bob</li>
+      <li>Carol</li>
+    </ul>
+ </li>
+[...]
+</ol>
+]]></sourcecode>
+
+<t>yields:</t>
+
+<ol type="Step %d:">
+  <li>
+  <t>Send it to:</t>
+  <ul spacing="compact">                                                                   
+    <li>Alice</li>
+    <li>Bob</li>
+    <li>Carol</li>
+  </ul>                                                                                    
+  </li> 
+</ol>
+      </section>
+
     </section>
     <!-- FINER POINTS -->
     <section numbered="true" toc="default">
@@ -779,36 +849,21 @@ examples in the document.
 &lt; for <
 &gt; for >
 ]]></artwork>
-        <t>
-In addition, the following entities are defined:
 
-</t>
+<t>In addition, the following entities are defined:</t>
+
         <artwork name="" type="" align="left" alt=""><![CDATA[
-&apos; for '
-&quot; for "
 &nbsp; for non-breaking space
 &nbhy; for non-breaking hyphen
 &wj; for word joiner
 ]]></artwork>
       </section>
 
-<!--
-      <section numbered="true" toc="default">
-        <name>How do I put a line break into the title of the document?</name>
-        <t>
-Insert &amp;nbsp; (non-breaking space) between words that you want to keep
-together on a line.
-</t>
-      </section>
--->
-
-
       <section numbered="true" toc="default">
         <name>How do I indicate the editor of the document?</name>
-        <t>
-Use the role attribute of the author element. For example:
 
-</t>
+        <t>Use the role attribute of the author element. For example:</t>
+
         <sourcecode type="xml"><![CDATA[
 <author initials="J" surname="Doe" fullname="John Doe" role="editor">
 ]]></sourcecode>
@@ -1015,7 +1070,7 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
           </dt>
           <dd>
           This issue is tracked in <eref
-          target="https://trac.tools.ietf.org/tools/xml2rfc/trac/ticket/439"></eref>.
+          target="https://trac.ietf.org/tools/xml2rfc/trac/ticket/439"></eref>.
           You can't modify your source to avoid it.
           </dd>
         </dl>
@@ -1454,7 +1509,7 @@ href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.levkowetz-xml2rf
           </front>
         </reference>
 
-      <reference anchor="xml2rfc" target="https://xml2rfc.ietf.org/">
+      <reference anchor="xml2rfc" target="https://author-tools.ietf.org/">
         <front>
           <title>xml2rfc</title>
           <author/>
