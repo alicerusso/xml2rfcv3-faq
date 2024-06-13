@@ -1105,9 +1105,9 @@ I-Ds (using &lt;xref&gt; with section and sectionFormat attributes). See <xref
 	  address (same structure as for the &lt;author&gt; element)</li>
 	  <li><t>body of the document</t>
 	  <ul spacing="compact">
-	    <li>by using the &lt;u&gt; element; see examples below, or</li>
-	    <li>directly in &lt;sourcecode&gt; or &lt;artwork&gt; elements (without
-	    the &lt;u&gt; element)</li>
+	    <li>by using the &lt;u&gt; element if you need to specifiy non-ASCII characters for correct protocol operation; see examples below, or</li>
+	    <li>directly in &lt;t&gt; when the use of non-ASCII characters is purely part of an example and not otherwise required for correct protocol operation, or</li>
+	    <li>directly in &lt;sourcecode&gt; or &lt;artwork&gt; elements.</li>
 	  </ul>
 	  </li>
 	</ul>
