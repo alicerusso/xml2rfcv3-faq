@@ -7,7 +7,7 @@
 ]>
 
 <rfc xmlns:xi="http://www.w3.org/2001/XInclude" obsoletes="" updates=""
-    docName="FAQ-xml2rfcv3-14" submissionType="IETF" category="info" xml:lang="en" version="3"
+    docName="FAQ-xml2rfcv3-15" submissionType="IETF" category="info" xml:lang="en" version="3"
      ipr="none" tocInclude="true" consensus="no" symRefs="true" sortRefs="true">
   <!-- xml2rfc v2v3 conversion 2.17.0 -->
 
@@ -35,12 +35,8 @@
       </t>
     </abstract>
     <note>
-      <name>Note to Readers</name>
-      <t>
-        Please send suggestions or corrections to the <eref
-        target="https://www.ietf.org/mailman/listinfo/xml2rfc">xml2rfc mailing
-        list</eref>. Source code for this document can be found at <eref
-        target="https://github.com/arusso-rpc/xml2rfcv3-faq"/>.
+      <name>Note</name>
+      <t>This document has been replaced by <eref target="https://authors.ietf.org"/>.
       </t>
     </note>
   </front>
@@ -1365,8 +1361,8 @@ in the text output) by using the &lt;artset&gt; element. For example:</t>
 <li>
 &lt;tt&gt; for <tt>fixed-width font</tt>.
 </li></ul>
-<aside><t>Note: in the text output, &lt;em&gt; yields underscores, &lt;strong&gt; yields
-asterisks, and &lt;tt&gt; yields quotation marks.</t></aside>
+<aside><t>Note: in the text output, &lt;em&gt; yields underscores, and &lt;strong&gt; yields
+asterisks. (&lt;tt&gt; yields nothing as of xml2rfc 3.10.0 in Sept. 2021; previously it yielded quotation marks.)</t></aside>
       </section>
 
       <section anchor="q_subscript" numbered="true" toc="default">
@@ -1391,8 +1387,9 @@ asterisks, and &lt;tt&gt; yields quotation marks.</t></aside>
 
 <aside>
   <t>Note: in the text output, &lt;sub&gt; yields underscore and parentheses,
-  e.g., <tt>x_(1)</tt>,
- &lt;sup&gt; yields caret and parentheses, e.g., <tt>2^(8)</tt>.</t>
+  e.g., <tt>x_(n-1)</tt>,
+ &lt;sup&gt; yields caret and parentheses, e.g., <tt>2^(n-1)</tt>.</t>
+<t>As of xml2rfc 3.6.0, &lt;sub&gt; and &lt;sup&gt; no longer yield parentheses around simple numbers.</t>
 </aside>
 
 <!-- Original from RFC 6330
